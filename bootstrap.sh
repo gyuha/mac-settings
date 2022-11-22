@@ -39,26 +39,6 @@ program_exists() {
     fi
 }
 
-############################ SETUP FUNCTIONS
-lnif() {
-    if [ -e "$1" ]; then
-        ln -sf "$1" "$2"
-    fi
-    ret="$?"
-    debug
-}
-
-do_backup() {
-    if [ -e "$2" ] || [ -e "$3" ] || [ -e "$4" ]; then
-        today=`date +%Y%m%d_%s`
-        for i in "$2" "$3" "$4"; do
-            [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$i.$today";
-        done
-        ret="$?"
-        success "$1"
-        debug
-   fi
-}
 
 upgrade_repo() {
       msg "trying to update $1"
@@ -95,66 +75,6 @@ clone_repo() {
     fi
 }
 
-clone_vundle() {
-    if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
-        git clone https://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
-    else
-        upgrade_repo "vundle"   "Successfully updated vundle"
-    fi
-    ret="$?"
-    success "$1"
-    debug
-}
-
-create_symlinks() {
-    endpath="$HOME/.$app_name/vim"
-
-    lnif "$endpath/vimrc"              "$HOME/.vimrc"
-    lnif "$endpath/vimrc.bundles"      "$HOME/.vimrc.bundles"
-
-    # Useful for fork maintainers
-    touch  "$HOME/.vimrc.local"
-
-    if [ -e "$endpath/.vimrc.fork" ]; then
-        ln -sf "$endpath/.vimrc.fork" "$HOME/.vimrc.fork"
-    elif [ "$fork_maintainer" -eq '1' ]; then
-       touch "$HOME/.vimrc.fork"
-       touch "$HOME/.vimrc.bundles.fork"
-    fi
-
-    if [ -e "$endpath/.vimrc.bundles.fork" ]; then
-        ln -sf "$endpath/.vimrc.bundles.fork" "$HOME/.vimrc.bundles.fork"
-    fi
-
-    if [ ! -d "$endpath/.vim/bundle" ]; then
-        mkdir -p "$endpath/.vim/bundle"
-    fi
-
-    if [ ! -d "$endpath/.vim/tmp" ]; then
-        mkdir -p "$endpath/.vim/tmp"
-    fi
-
-    if [ ! -d "$endpath/.vim/backup" ]; then
-        mkdir -p "$endpath/.vim/backup"
-    fi
-
-	ret="$?"
-    success "$1"
-    debug
-}
-
-
-setup_vundle() {
-    system_shell="$SHELL"
-    export SHELL='/bin/sh'
-    vim -u "$HOME/.vimrc.bundles" +BundleInstall! +BundleClean +qall
-    export SHELL="$system_shell"
-
-    success "$1"
-    debug
-}
-
-
 usage()
 {
 	echo -e "Setting ubuntu shell
@@ -178,4 +98,4 @@ esac
 
 msg "$HOME/.$app_name"
 cd "$HOME/.$app_name"
-./shell.sh $POWERLINE
+#./shell.sh $POWERLINE

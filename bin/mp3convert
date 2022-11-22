@@ -1,6 +1,0 @@
-#!/bin/bash
-for f in *.mp3; do
-	echo "Processing $f file..."
-	afconvert -f caff -d aac -s 1 -b 27000 -c 1 "$f" "${f/mp3/caf}"
-done
-
