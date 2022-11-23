@@ -1,21 +1,18 @@
 settings
 ========
 
-Gyuha's Linux Setting...
+Gyuha's Macos Setting...
 
 ## Installation
-
-Simply copying and pasting the following line into a terminal.
-
-# Ubuntu 20.04
-
-## 기본 서비스 패키지 설치
-
-### 리눅스 사용자 설정
-리눅스 터미널용 설정.
+### 1. 기본 설정 받기
 ```bash
-sudo apt install git
 wget -O - https://raw.githubusercontent.com/gyuha/mac-settings/master/bootstrap.sh | bash
+```
+
+## vim 설정
+개인 적인 vim 설정
+```bash
+curl https://raw.githubusercontent.com/gyuha/vim-start/master/vimrc > ~/.vimrc
 ```
 
 ### zsh 설치
@@ -35,11 +32,6 @@ cd ~/.settings/applications
 - `alt + c` : 경로 이동 용
 
 -----
-## vim 설정
-개인 적인 vim 설정
-```bash
-curl https://raw.githubusercontent.com/gyuha/vim-start/master/vimrc > ~/.vimrc
-```
 
 ## 참고
 * https://vim-bootstrap.com/
