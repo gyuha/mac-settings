@@ -19,3 +19,4 @@ brew install --cask couleurs
 brew install --cask double-commander
 brew install --cask rectangle
 brew install --cask obsidian
+brew install --cask stats

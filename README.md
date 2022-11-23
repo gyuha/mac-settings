@@ -33,19 +33,5 @@ cd ~/.settings/applications
 
 -----
 
-## 참고
-* https://vim-bootstrap.com/
-* http://vim.spf13.com/
-
------
-## 참고
- * [Top Things To Do After Installing Ubuntu 18.04 Bionic Beaver To Make It Your Own](https://www.linuxuprising.com/2018/04/top-things-to-do-after-installing.html)
- * [Ubuntu 18.04 한글 입력기 UIM 설정하기](http://progtrend.blogspot.com/2018/06/ubuntu-1804-uim.html)
-
-
------
-## Tips
-### 우분투 기본 터미널 바꾸기
-```bash
-sudo update-alternatives --config x-terminal-emulator
-```
+## AppStore에서 설치 해야 하는 것들
+[Snap](https://apps.apple.com/kr/app/snap/id418073146?mt=12) : 화면 하단 Dock의 실행을 `Command + 숫자`로 실행 하도록 해준다.
