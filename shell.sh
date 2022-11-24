@@ -25,7 +25,7 @@ BASHRC_SRC="# GYUHA SETTINGS
 CONFIG_PATH=$HOME/.settings/conf
 [ -s $HOME/.settings/conf/zsh_profile.sh ] && . $CONFIG_PATH/zsh_profile.sh
 [ -s /opt/homebrew/bin/pyenv.sh ] && . $CONFIG_PATH/pyenv.sh
-[ -s $NVS_HOME/nvs.sh ] && . $CONFIG_PATH/nvs.sh
+[ -s $HOME/.nvs/nvs.sh ] && . $CONFIG_PATH/nvs.sh
 [ -s /opt/homebrew/bin/jenv ] && . $CONFIG_PATH/jenv.sh
 # GYUHA SETTINGS END
 "

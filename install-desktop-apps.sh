@@ -29,6 +29,7 @@ declare -a Apps=(
 "obsidian"
 "stats"
 "visual-studio-code"
+"dbeaver-community"
 )
 
 for entry in "${Apps[@]}"
