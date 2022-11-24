@@ -1,5 +1,9 @@
-# 인증 받지 않은 앱 실행하기
-sudo spctl --master-disable
+######
+# Install
+# - dev tools
+# - pyenv
+# - nvs
+#
 
 declare -a Apps=(
 "tig"
@@ -7,7 +11,6 @@ declare -a Apps=(
 "tmux"
 "pyenv"
 "pyenv-virtualenv"
-"jenv"
 )
 
 msg() {
