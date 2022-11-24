@@ -57,3 +57,6 @@ else
 fi
 
 echo -e "Type this \\n\\t# source $PROFILE"
+
+# vim, jetbrain... key repeat on
+defaults write -g ApplePressAndHoldEnabled -bool false
