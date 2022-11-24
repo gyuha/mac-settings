@@ -7,10 +7,8 @@ BASEDIR=$(dirname "$SCRIPT")
 echo $BASEDIR
 ln -snf $BASEDIR/bin $HOME/.bin
 
-rm -rf $HOME/.tmux.conf
 
-PROFILE=$HOME"/.bashrc"
-POWERLINE="$BASEDIR/conf/powerline"
+PROFILE=$HOME"/.zshrc"
 
 function usage()
 {
@@ -18,30 +16,18 @@ function usage()
 Gyuha's linux setting install
 Usage: `basename $0` [-p]
 
-    -p : Use powerline
     -h : help
     "
 }
 
-function powerline_setting()
-{
-    echo "Use powerline"
-    # Tmux 세팅
-    sed -i "s/\t\"wan_ip/\t\#\"wan_ip/" $BASEDIR/bin/tmux-powerline/themes/default.sh
-    sed -i "s/\t\"mailcount/\t\#\"mailcount/" $BASEDIR/bin/tmux-powerline/themes/default.sh
-    sed -i "s/\t\"now_playing/\t\#\"now_playing/" $BASEDIR/bin/tmux-powerline/themes/default.sh
-    sed -i "s/\t\"load/\t\#\"load/" $BASEDIR/bin/tmux-powerline/themes/default.sh
-    sed -i "s/\t\"battery/\t\#\"battery/" $BASEDIR/bin/tmux-powerline/themes/default.sh
-    sed -i "s/\t\"weather/\t\#\"weather/" $BASEDIR/bin/tmux-powerline/themes/default.sh
-    # vim
-    #   sed -i "s/\"let g:Powerline_symbols/let g:Powerline_symbols/" $HOME/.vimrc
-    cat $POWERLINE >> $PROFILE
-}
 
 BASHRC_SRC="# GYUHA SETTINGS
-if [ -f $BASEDIR/conf/sh_profile.sh ]; then
-    . $BASEDIR/conf/sh_profile.sh
-    . $BASEDIR/conf/bash_ps1.sh
+if [ -f $BASEDIR/conf/zsh_profile.sh ]; then
+    . $BASEDIR/conf/zsh_profile.sh
+fi
+
+if [ -f /opt/homebrew/bin/pyenv ]; then
+    . $BASEDIR/conf/pyenv.sh
 fi
 # GYUHA SETTINGS END
 "
@@ -51,23 +37,6 @@ while [[ "$1" == -* ]]; do
         -h)
             usage;
             exit;
-            ;;
-        -p)
-            shift
-BASHRC_SRC=$BASHRC_SRC"
-if [ -f $BASEDIR/conf/bash_powerline.sh ]; then
-    . $BASEDIR/conf/bash_powerline.sh
-fi
-"
-            powerline_setting;
-            ;;
-        -c)
-            shift
-BASHRC_SRC=$BASHRC_SRC"
-if [ -f $BASEDIR/conf/bash_colorline.sh ]; then
-    . $BASEDIR/conf/bash_colorline.sh
-fi
-"
             ;;
     esac
     shift
