@@ -35,3 +35,4 @@ cd ~/.settings/applications
 
 ## AppStore에서 설치 해야 하는 것들
 [Snap](https://apps.apple.com/kr/app/snap/id418073146?mt=12) : 화면 하단 Dock의 실행을 `Command + 숫자`로 실행 하도록 해준다.
+[올ㅋ사전](https://apps.apple.com/kr/app/snap/id418073146?mt=12) : 화면 하단 Dock의 실행을 `Command + 숫자`로 실행 하도록 해준다.
