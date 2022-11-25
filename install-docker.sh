@@ -8,6 +8,8 @@
 declare -a Apps=(
 "docker"
 "docker-compose"
+"lazydocker"
+"docui"
 )
 
 
