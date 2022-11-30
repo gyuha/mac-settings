@@ -11,6 +11,7 @@ declare -a Apps=(
 "tmux"
 "pyenv"
 "pyenv-virtualenv"
+"poetry"
 )
 
 msg() {

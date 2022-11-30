@@ -34,5 +34,6 @@ fzf
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-ZSH_THEME="bira"
+#ZSH_THEME="bira"
+ZSH_THEME="agnoster"
 source $ZSH/oh-my-zsh.sh
