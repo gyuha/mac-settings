@@ -29,6 +29,9 @@ do
 	install "$entry"
 done
 
+poetry config virtualenvs.in-project true
+poetry config virtualenvs.path "./.venv"
+
 install_nvs() {
 	msg "Install : nvs"
 	export NVS_HOME="$HOME/.nvs"
