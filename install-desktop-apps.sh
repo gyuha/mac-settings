@@ -29,6 +29,7 @@ declare -a Apps=(
 "notion-enhanced"
 "visual-studio-code"
 "dbeaver-community"
+"linearmouse"
 "meld"
 "kdiff3"
 "gittyup"
