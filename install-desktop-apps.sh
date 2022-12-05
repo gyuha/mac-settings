@@ -34,6 +34,7 @@ declare -a Apps=(
 "kdiff3"
 "gittyup"
 "gitup"
+"marta"
 )
 
 for entry in "${Apps[@]}"
