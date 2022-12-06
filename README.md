@@ -41,6 +41,11 @@ sudo defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1
 
 - [macOS에서 마우스 휠 사용시 가속도(acceleration,inertia) 없애는 방법](defaults write .GlobalPreferences com.apple.scrollwheel.scaling -1)
 
+## karabiner 설정
+아래 링크를 클릭 합니다.
+- [link click](karabiner://karabiner/assets/complex_modifications/import?url=https://raw.githubusercontent.com/gyuha/karabiner-caplock-map/main/caplock.json)
+설정 이후에는 한글 키를 `right_option`과 `right_command`를 `F19`로 변경을 해 줘야 합니다.
+
 ## AppStore에서 설치 해야 하는 것들
 [Snap](https://apps.apple.com/kr/app/snap/id418073146?mt=12) : 화면 하단 Dock의 실행을 `Command + 숫자`로 실행 하도록 해준다.
 [올ㅋ사전](https://apps.apple.com/kr/app/snap/id418073146?mt=12) : 화면 하단 Dock의 실행을 `Command + 숫자`로 실행 하도록 해준다.
