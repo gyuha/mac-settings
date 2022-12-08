@@ -37,3 +37,7 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 #ZSH_THEME="bira"
 ZSH_THEME="agnoster"
 source $ZSH/oh-my-zsh.sh
+
+# prompt host name skip
+# ref : https://github.com/agnoster/agnoster-zsh-theme/issues/39
+prompt_context() {}
