@@ -1,0 +1,7 @@
+set ideajoin
+let mapleader=","
+set easymotion
+set keep-english-in-normal-and-restore-in-insert
+set visualbell
+set noerrorbells
+
