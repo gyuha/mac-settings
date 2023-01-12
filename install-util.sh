@@ -18,7 +18,7 @@ declare -a Apps=(
 "zsh-syntax-highlighting"
 "bat"
 "tmux"
-"noborus/tap/ov"
+"noborus/tap/ov"         # https://noborus.github.io/ov/
 "tree"
 )
 
