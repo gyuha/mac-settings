@@ -18,6 +18,8 @@ declare -a Apps=(
 "zsh-syntax-highlighting"
 "bat"
 "tmux"
+"noborus/tap/ov"
+"tree"
 )
 
 for entry in "${Apps[@]}"
