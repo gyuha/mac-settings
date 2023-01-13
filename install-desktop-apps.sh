@@ -37,8 +37,13 @@ declare -a Apps=(
 "gitup"
 "marta"
 "skitch"
+"visual-studio-code-insiders"
 )
 
+# 실험적인 버전의 소프트웨어를 설치 할 수 있게 해 준다.
+brew tap homebrew/cask-versions
+
+# 목록의 앱 설치 하기
 for entry in "${Apps[@]}"
 do
 	install "$entry"
