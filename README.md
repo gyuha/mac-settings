@@ -1,4 +1,4 @@
-settings
+# settings
 ========
 
 Gyuha's Macos Setting...
