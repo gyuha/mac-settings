@@ -4,6 +4,17 @@
 Gyuha's Macos Setting...
 
 ## Installation
+### brew install
+```bash
+wget -O - https://raw.githubusercontent.com/gyuha/mac-settings/master/bootstrap.sh | bash
+eval $(/opt/homebrew/bin/brew shellenv)
+brew install wget
+```
+이렇게 하면 실행이 가능 함.. `~/.zshrc` 파일 끝에 아래 줄을 추가
+```bash
+eval $(/opt/homebrew/bin/brew shellenv)
+```
+
 ### 1. 기본 설정 받기
 ```bash
 wget -O - https://raw.githubusercontent.com/gyuha/mac-settings/master/bootstrap.sh | bash
