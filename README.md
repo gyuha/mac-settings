@@ -1,5 +1,5 @@
 # settings
-========
+----
 
 Gyuha's Macos Setting...
 
