@@ -14,8 +14,6 @@ declare -a Apps=(
 "fd"
 "thefuck"
 "autojump"
-"zsh-autosuggestions"
-"zsh-syntax-highlighting"
 "bat"
 "tmux"
 "noborus/tap/ov"         # https://noborus.github.io/ov/
@@ -26,5 +24,3 @@ for entry in "${Apps[@]}"
 do
 	install "$entry"
 done
-
-install_nvs

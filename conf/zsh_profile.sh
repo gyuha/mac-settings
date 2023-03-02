@@ -27,16 +27,14 @@ function fzfp() {
 #export FZF_DEFAULT_COMMAND=’fd — type f’
 
 plugins=(
-git
-fzf
+  git
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  zsh-better-npm-completion
 )
-
-source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 #ZSH_THEME="bira"
 ZSH_THEME="agnoster"
-source $ZSH/oh-my-zsh.sh
 
 # prompt host name skip
 # ref : https://github.com/agnoster/agnoster-zsh-theme/issues/39
