@@ -31,6 +31,8 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   zsh-better-npm-completion
+  fzf
+  fasd
 )
 
 #ZSH_THEME="bira"

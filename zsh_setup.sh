@@ -38,8 +38,6 @@ export ZSH=\"$HOME/.oh-my-zsh\"
 [ -s /opt/homebrew/bin/jenv ] && . $CONFIG_PATH/jenv.sh
 
 source $ZSH/oh-my-zsh.sh
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 "
 
 # 개인 설정 적용하기

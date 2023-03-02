@@ -13,6 +13,7 @@ declare -a Apps=(
 "fzf"
 "ripgrep"
 "fd"
+"fasd"
 "thefuck"
 "autojump"
 "bat"
