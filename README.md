@@ -28,8 +28,9 @@ curl https://raw.githubusercontent.com/gyuha/vim-start/master/vimrc > ~/.vimrc
 
 ### zsh 설치
 ```bash
-cd ~/.settings/applications
-./zsh.sh
+cd ~/.settings/
+./oh-my-zsh.sh
+./zsh_setup.sh
 ```
 
 ### fzf 설치

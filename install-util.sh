@@ -9,6 +9,7 @@ install() {
 }
 
 declare -a Apps=(
+"noevim"
 "fzf"
 "ripgrep"
 "fd"
