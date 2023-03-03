@@ -38,6 +38,13 @@ plugins=(
 #ZSH_THEME="bira"
 ZSH_THEME="agnoster"
 
+if [ -f ~/.config/nvim/init.vim ]
+then
+	alias vim="nvim"
+	alias vi="nvim"
+	alias vimdiff="nvim -d"
+fi
+
 # prompt host name skip
 # ref : https://github.com/agnoster/agnoster-zsh-theme/issues/39
 prompt_context() {}

@@ -39,7 +39,6 @@ declare -a Apps=(
 "visual-studio-code"
 "visual-studio-code-insiders"
 "hiddenbar"
-"neovide"
 )
 
 # 실험적인 버전의 소프트웨어를 설치 할 수 있게 해 준다.
