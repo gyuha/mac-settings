@@ -39,4 +39,6 @@ install_nvs() {
 	. "$NVS_HOME/nvs.sh" install
 }
 
+ln -snf ~/.settings/conf/ideavimrc ~/.ideavimrc
+
 install_nvs
