@@ -40,6 +40,7 @@ declare -a Apps=(
 "visual-studio-code-insiders"
 "hiddenbar"
 "sublime-text"
+"gureumkim"
 )
 
 # 실험적인 버전의 소프트웨어를 설치 할 수 있게 해 준다.
