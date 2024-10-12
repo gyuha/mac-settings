@@ -18,6 +18,7 @@ declare -a Apps=(
 "fork"
 "alt-tab"
 "iina"
+"skim"
 "keka"
 "xnviewmp"
 "appcleaner"
