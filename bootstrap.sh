@@ -77,7 +77,7 @@ clone_repo() {
 
 usage()
 {
-	echo -e "Setting ubuntu shell
+	echo -e "Setting MacOS shell
 Usage: `basename $0` [-a OR ID OR name] [-h]
 	-h : help
 	"
