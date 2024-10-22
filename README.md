@@ -26,11 +26,11 @@ wget -O - https://raw.githubusercontent.com/gyuha/mac-settings/master/bootstrap.
 curl https://raw.githubusercontent.com/gyuha/vim-start/master/vimrc > ~/.vimrc
 ```
 
-### zsh 설치
+### zsh 설정
 ```bash
-cd ~/.settings/
-./oh-my-zsh.sh
-./zsh_setup.sh
+cd ~/.settings/applications
+./zinit.sh
+
 ```
 
 ### fzf 설치
