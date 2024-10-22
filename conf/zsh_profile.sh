@@ -2,7 +2,6 @@
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
-
 set -o vi
 
 alias tmux="tmux -2"
@@ -15,6 +14,8 @@ export FZF_DEFAULT_OPTS='
 --color=info:#98c379,prompt:#61afef,pointer:#be5046,marker:#e5c07b,spinner:#61afef,header:#61afef
 '
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 function fzfp() {
 	fzf --height 100% --color=bg+:24 --preview '[[ $(file --mime {}) =~ binary ]] &&
 					 echo {} is a binary file ||
@@ -24,7 +25,10 @@ function fzfp() {
 					  cat {}) 2> /dev/null | head -500'
 }
 
-#export FZF_DEFAULT_COMMAND=’fd — type f’
+[ -s /opt/homebrew/bin/pyenv ] && . $HOME/.settings/conf/pyenv.sh
+[ -s $HOME/.nvs/nvs.sh ] && . $HOME/.settings/conf/nvs.sh
+[ -s /opt/homebrew/bin/jenv ] && . $HOME/.settings/conf/jenv.sh
+
 
 plugins=(
   git
@@ -35,16 +39,14 @@ plugins=(
   fasd
 )
 
-#ZSH_THEME="bira"
-ZSH_THEME="agnoster"
+alias tmux="tmux -2"
+alias vi='vim'
+alias of='/usr/bin/nautilus .' # 우분투에서 현재 폴더 탐색기로 열기
+alias dgrep="grep --exclude-dir='.git' --exclude='*.swp'"
+alias fd='fdfind'
 
-if [ -f ~/.config/nvim/init.vim ]
-then
-	alias vim="nvim"
-	alias vi="nvim"
-	alias vimdiff="nvim -d"
-fi
-
-# prompt host name skip
-# ref : https://github.com/agnoster/agnoster-zsh-theme/issues/39
-prompt_context() {}
+## ls와 관련된 별칭 설정
+alias ls='ls --color=auto'
+alias ll='ls -l'
+alias la='ls -A'
+alias l='ls -CF'
