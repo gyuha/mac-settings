@@ -1,4 +1,15 @@
 # GYUHA SETTINGS
+
+## Function to create alias if command exists
+create_alias_if_exists() {
+    local cmd=$1    # Original command
+    local alias=$2  # Alias to create
+
+    if command -v "$cmd" &> /dev/null; then
+        alias "$alias"="$cmd"
+    fi
+}
+
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
@@ -29,24 +40,20 @@ function fzfp() {
 [ -s $HOME/.nvs/nvs.sh ] && . $HOME/.settings/conf/nvs.sh
 [ -s /opt/homebrew/bin/jenv ] && . $HOME/.settings/conf/jenv.sh
 
-
-plugins=(
-  git
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-better-npm-completion
-  fzf
-  fasd
-)
+# Basic ZSH configurations
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
 
 alias tmux="tmux -2"
 alias vi='vim'
-alias of='/usr/bin/nautilus .' # 우분투에서 현재 폴더 탐색기로 열기
 alias dgrep="grep --exclude-dir='.git' --exclude='*.swp'"
 alias fd='fdfind'
 
 ## ls와 관련된 별칭 설정
-alias ls='ls --color=auto'
-alias ll='ls -l'
+alias ls='ls -G'
+alias ll='ls -lah'
 alias la='ls -A'
 alias l='ls -CF'
+alias grep='grep --color=auto'
