@@ -49,7 +49,6 @@ setopt appendhistory
 alias tmux="tmux -2"
 alias vi='vim'
 alias dgrep="grep --exclude-dir='.git' --exclude='*.swp'"
-alias fd='fdfind'
 
 ## ls와 관련된 별칭 설정
 alias ls='ls -G'
