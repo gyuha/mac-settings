@@ -1,14 +1,5 @@
 #!/usr/bin/env bash
-NVS_HOME="$HOME/.nvs"
-git clone https://github.com/jasongin/nvs "$NVS_HOME"
-. "$NVS_HOME/nvs.sh" install
-echo "nvs auto on" >> ~/.zshrc
-nvs add lts
-nvs use lts
-nvs link lts
 
-
-npm install -g yarn
 # Typescript
 npm install -g typescript ts-node tslint
 npm install -g typescript-language-server
@@ -27,6 +18,5 @@ pm2 install pm2-logrotate
 pm2 set pm2-logrotate:retain 60
 
 node -v
-yarn -v
 npm -v
 tsc -v

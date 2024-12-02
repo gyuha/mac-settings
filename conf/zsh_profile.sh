@@ -37,7 +37,6 @@ function fzfp() {
 }
 
 [ -s /opt/homebrew/bin/pyenv ] && . $HOME/.settings/conf/pyenv.sh
-[ -s $HOME/.nvs/nvs.sh ] && . $HOME/.settings/conf/nvs.sh
 [ -s /opt/homebrew/bin/jenv ] && . $HOME/.settings/conf/jenv.sh
 
 # Basic ZSH configurations
@@ -49,6 +48,7 @@ setopt appendhistory
 alias tmux="tmux -2"
 alias vi='vim'
 alias dgrep="grep --exclude-dir='.git' --exclude='*.swp'"
+alias pn='pnpm'
 
 ## ls와 관련된 별칭 설정
 alias ls='ls -G'
