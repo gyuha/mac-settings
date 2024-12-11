@@ -35,7 +35,7 @@ declare -a Apps=(
 "another-redis-desktop-manager"
 "visual-studio-code"
 "visual-studio-code-insiders"
-"hiddenbar"
+"only-switch"
 "sublime-text"
 "gureumkim"
 )
