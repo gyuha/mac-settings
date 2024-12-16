@@ -22,7 +22,6 @@ declare -a Apps=(
 "keka"
 "xnviewmp"
 "appcleaner"
-"couleurs"
 "double-commander"
 "rectangle"
 "stats"
@@ -37,8 +36,12 @@ declare -a Apps=(
 "visual-studio-code-insiders"
 "only-switch"
 "sublime-text"
-"gureumkim"
+"pronotes"
 )
+
+# 미사용
+# "couleurs"  // color picker
+# "gureumkim" // 구름 입력기
 
 # 실험적인 버전의 소프트웨어를 설치 할 수 있게 해 준다.
 brew tap homebrew/cask-versions
