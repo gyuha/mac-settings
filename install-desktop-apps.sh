@@ -36,7 +36,9 @@ declare -a Apps=(
 "visual-studio-code-insiders"
 "only-switch"
 "sublime-text"
-"pronotes"
+"shottr"
+"zed"
+"warp"
 )
 
 # 미사용
