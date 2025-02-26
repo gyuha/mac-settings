@@ -20,6 +20,7 @@ declare -a Apps=(
 "tmux"
 "noborus/tap/ov"         # https://noborus.github.io/ov/
 "tree"
+"lf" # file
 )
 
 for entry in "${Apps[@]}"
