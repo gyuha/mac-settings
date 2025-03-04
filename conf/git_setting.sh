@@ -40,20 +40,21 @@ NAME=$2
 # Default git setting
 git config --global user.name "$NAME"
 git config --global user.email $EMAIL
+
+git config --global credential.helper store
+
+# color
 git config --global color.ui "auto"
-git config --global merge.tool vimdiff
-git config --global color.branch auto
 git config --global color.diff auto
 git config --global color.interactive auto
 git config --global color.status auto
-git config --global core.editor vim
-git config --global diff.tool vimdiff
-git config --global difftool.prompt false
-git config --global credential.helper store
+git config --global color.branch auto
 
+# core
+git config --global core.editor vim
+git config --global core.autocrlf false
 
 # text
-git config --global core.autocrlf false
 git config --global column.ui auto
 
 # branch
@@ -74,6 +75,7 @@ git config --global diff.algorithm histogram
 git config --global diff.colorMoved plain
 git config --global diff.mnemonicPrefix true
 git config --global diff.renames true
+git config --global merge.tool vimdiff
 
 # pull
 git config --global pull.rebase true
@@ -83,18 +85,12 @@ git config --global fetch.prune true
 git config --global fetch.pruneTags true
 git config --global fetch.all true
 
-# help
-git config --global help.autocorrect prompt
-
 # commit
 git config --global commit.verbose true
 
 # rerere
 git config --global rerere.enabled true
 git config --global rerere.autoupdate true
-
-# core
-git config --global core.excludesfile ~/.gitignore
 
 # rebase
 git config --global rebase.autoSquash true
