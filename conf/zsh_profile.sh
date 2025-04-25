@@ -57,3 +57,5 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lt='tree -d'
 alias grep='grep --color=auto'
+
+PATH=$PATH:~/.settings/bin
