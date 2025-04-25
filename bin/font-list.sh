@@ -1,3 +1,1 @@
-# 설치 필요
-# 	brew install fontconfig
-fc-list : family
+fc-list | cut -d: -f2 | sort | uniq
