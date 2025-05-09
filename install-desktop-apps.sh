@@ -11,34 +11,35 @@ install() {
 declare -a Apps=(
 "firefox"
 "brave-browser"
-"iterm2"
-"linearmouse"
-"easy-move-plus-resize"
-"karabiner-elements"
-"fork"
-"alt-tab"
-"iina"
-"skim"
-"keka"
-"xnviewmp"
-"appcleaner"
-"double-commander"
-"rectangle"
-"stats"
-"maccy"
-"dbeaver-community"
-"meld"
-"kdiff3"
-"skitch"
-"raycast"
+"iterm2" # Terminal 
+"warp" # Terminal
+"linearmouse" # 마우스 이동 조정
+"easy-move-plus-resize" # 리눅스 처럼 창 이동 지원
+"karabiner-elements" # Keyboard remapping
+"fork" # Git GUI
+"alt-tab" # Alternate Tab
+"iina" # Movie Player
+"skim" # PDF Reader
+"obsidian" # Markdown Editor
+"keka" # zip 압축
+"xnviewmp" # 이미지 뷰어
+"appcleaner" # App Remover
+"double-commander" # File Manager
+"rectangle" # Window Manager
+"stats" # System monitor for the menu bar
+"maccy" # Clipboard manager
+"dbeaver-community" # Universal database tool and SQL client
+"meld" # Visual diff and merge tool
+"kdiff3" # Visual diff and merge tool
+"raycast" # Control your tools with a few keystrokes
 "another-redis-desktop-manager"
-"visual-studio-code"
-"visual-studio-code-insiders"
-"only-switch"
-"sublime-text"
+"only-switch" # Top bar switcher
+"visual-studio-code" # Open-source code editor
+"visual-studio-code-insiders" # Open-source code editor indsiders
+"sublime-text" # Text Editor
+"zed" # Text Editor
+"flameshot" # Screenshot tool
 "shottr"
-"zed"
-"warp"
 )
 
 # 미사용
@@ -46,7 +47,7 @@ declare -a Apps=(
 # "gureumkim" // 구름 입력기
 
 # 실험적인 버전의 소프트웨어를 설치 할 수 있게 해 준다.
-brew tap homebrew/cask-versions
+# brew tap homebrew/cask-versions
 
 # 목록의 앱 설치 하기
 for entry in "${Apps[@]}"
