@@ -21,6 +21,7 @@ declare -a Apps=(
 "noborus/tap/ov"         # https://noborus.github.io/ov/
 "tree"
 "lf" # file
+"ncdu" # Disk usage analyzer with an ncurses interface.
 )
 
 for entry in "${Apps[@]}"
