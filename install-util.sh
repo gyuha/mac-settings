@@ -22,6 +22,7 @@ declare -a Apps=(
 "tree"
 "lf" # file
 "ncdu" # Disk usage analyzer with an ncurses interface.
+"htop"
 )
 
 for entry in "${Apps[@]}"
