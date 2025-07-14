@@ -137,6 +137,9 @@ git config --global alias.sa "stash apply"
 git config --global alias.ss "stash save"
 git config --global alias.url "config remote.origin.url"
 
+# 로컬의 브랜치 중 main만 남기고 정리
+git config --global alias.prune-branches '!git branch | grep -v "main" | xargs git branch -d'
+
 # git https auth cache
 # git config --global credential.helper cache
 
