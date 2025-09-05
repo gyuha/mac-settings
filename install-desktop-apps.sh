@@ -11,7 +11,7 @@ install() {
 declare -a Apps=(
 "firefox"
 "brave-browser"
-"iterm2" # Terminal 
+"iterm2" # Terminal
 "warp" # Terminal
 "linearmouse" # 마우스 이동 조정
 "easy-move-plus-resize" # 리눅스 처럼 창 이동 지원
@@ -40,6 +40,7 @@ declare -a Apps=(
 "zed" # Text Editor
 "flameshot" # Screenshot tool
 "shottr"
+"keyboard-cowboy" # Keyboard Cowboy https://github.com/zenangst/KeyboardCowboy
 )
 
 # 미사용
