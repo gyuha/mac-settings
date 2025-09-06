@@ -33,7 +33,7 @@ return {
     cmd = { "NvimTreeToggle", "NvimTreeFindFile" },
     keys = {
       { "<leader>e", "<cmd>NvimTreeToggle<cr>", desc = "Explorer" },
-      { "<F3>", "<cmd>NvimTreeToggle<cr>", desc = "Explorer (F3)" },
+      { "<F2>", "<cmd>NvimTreeToggle<cr>", desc = "Explorer (F2)" },
       { "<C-n>",    "<cmd>NvimTreeToggle<CR>",   mode = "n", silent = true, desc = "NvimTree Toggle" },
       { "<leader>fe","<cmd>NvimTreeFindFile<CR>",mode = "n", silent = true, desc = "NvimTree Find Current File" },
       { "<leader>ne","<cmd>NvimTreeFocus<CR>",   mode = "n", silent = true, desc = "NvimTree Focus" },
@@ -65,6 +65,7 @@ return {
       { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
       { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
       { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
+      { "<F1>", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
       { "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "Help" },
     },
     config = function()
