@@ -213,4 +213,7 @@ return {
 		config = function() require("todo-comments").setup() end
 	},
 
+
+	-- easymotion
+	{ "easymotion/vim-easymotion" },
 }
