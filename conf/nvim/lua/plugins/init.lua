@@ -10,21 +10,6 @@ return {
     end
   },
 
-  -- 상태바
-  {
-    "nvim-lualine/lualine.nvim",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    config = function()
-      require("lualine").setup({ options = { theme = "tokyonight", globalstatus = true } })
-    end
-  },
-
-  -- which-key: 키바인드 힌트
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = function() require("which-key").setup({}) end
-  },
 
   -- 파일 탐색기
   {
@@ -55,30 +40,6 @@ return {
     end
   },
 
-  -- telescope: 퍼지 검색
-  {
-    "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
-    dependencies = { "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons" },
-    cmd = "Telescope",
-    keys = {
-      { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find Files" },
-      { "<leader>fg", "<cmd>Telescope live_grep<cr>",  desc = "Live Grep" },
-      { "<leader>fb", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
-      { "<F1>", "<cmd>Telescope buffers<cr>",    desc = "Buffers" },
-      { "<leader>fh", "<cmd>Telescope help_tags<cr>",  desc = "Help" },
-    },
-    config = function()
-      require("telescope").setup({
-        defaults = {
-          layout_strategy = "flex",
-          mappings = {
-            i = { ["<C-j>"] = "move_selection_next", ["<C-k>"] = "move_selection_previous" }
-          }
-        }
-      })
-    end
-  },
 
   -- Treesitter
   {
@@ -98,125 +59,6 @@ return {
   },
 
 
-  -- 자동완성
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "L3MON4D3/LuaSnip",
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-path",
-      "rafamadriz/friendly-snippets",
-    },
-    config = function()
-      local cmp = require("cmp")
-      local luasnip = require("luasnip")
-      require("luasnip.loaders.from_vscode").lazy_load()
-
-      cmp.setup({
-        snippet = {
-          expand = function(args) luasnip.lsp_expand(args.body) end,
-        },
-        mapping = cmp.mapping.preset.insert({
-          ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-          ["<C-f>"] = cmp.mapping.scroll_docs(4),
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expand_or_locally_jumpable() then
-              luasnip.expand_or_jump()
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
-              luasnip.jump(-1)
-            else
-              fallback()
-            end
-          end, { "i", "s" }),
-        }),
-        sources = cmp.config.sources({
-          { name = "nvim_lsp" },
-          { name = "luasnip" },
-          { name = "path" },
-        }, { { name = "buffer" } }),
-      })
-    end
-  },
-
-
-  -- 코멘트 토글
-  -- 코멘트 토글
-  {
-    "numToStr/Comment.nvim",
-    -- 키를 누를 때 자동 로드되도록 keys에 선언
-    keys = {
-      -- 기본 힌트(내장 매핑): gc / gb
-      { "gc", mode = { "n", "v" }, desc = "Toggle Comment" },
-      { "gb", mode = { "n", "v" }, desc = "Block Comment" },
-
-      -- 사용자 매핑: <leader>c / <leader>C
-      {
-        "<leader>c",
-        function()
-          -- Normal 모드: 현재 라인 라인주석 토글
-          require("Comment.api").toggle.linewise.current()
-        end,
-        mode = "n",
-        desc = "Toggle comment (linewise)",
-      },
-      {
-        "<leader>c",
-        function()
-          -- Visual 모드: 선택 범위 라인주석 토글
-          local api = require("Comment.api")
-          api.toggle.linewise(vim.fn.visualmode())
-        end,
-        mode = "x",
-        desc = "Toggle comment (linewise) - visual",
-      },
-      {
-        "<leader>C",
-        function()
-          -- Normal 모드: 현재 라인 블록주석 토글
-          require("Comment.api").toggle.blockwise.current()
-        end,
-        mode = "n",
-        desc = "Toggle comment (blockwise)",
-      },
-      {
-        "<leader>C",
-        function()
-          -- Visual 모드: 선택 범위 블록주석 토글
-          local api = require("Comment.api")
-          api.toggle.blockwise(vim.fn.visualmode())
-        end,
-        mode = "x",
-        desc = "Toggle comment (blockwise) - visual",
-      },
-    },
-    config = function()
-      require("Comment").setup({
-        -- 필요 시 pre_hook 등 옵션 추가
-      })
-    end,
-  },
-
-  -- surround 편집
-  {
-    "kylechui/nvim-surround",
-    event = "VeryLazy",
-    config = function() require("nvim-surround").setup() end
-  },
-
   -- 점프/모션
   {
     "folke/flash.nvim",
@@ -230,18 +72,6 @@ return {
     }
   },
 
-  -- Git
-  {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      require("gitsigns").setup({
-        signs = { add = { text = "+" }, change = { text = "~" }, delete = { text = "_" } },
-        current_line_blame = true,
-      })
-    end
-  },
-  -- { "tpope/vim-fugitive", cmd = { "Git", "Gdiffsplit", "Gblame" } },
 
   -- 알림/메시지 UI
   { "rcarriga/nvim-notify", config = function() vim.notify = require("notify") end },
@@ -252,16 +82,6 @@ return {
     opts = { presets = { lsp_doc_border = true } }
   },
 
-  -- 문제/리스트 UI
-  {
-    "folke/trouble.nvim",
-    cmd = "Trouble",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = {},
-    keys = {
-      { "<leader>xx", "<cmd>Trouble diagnostics toggle<cr>", desc = "Diagnostics (Trouble)" },
-    }
-  },
 
   -- lua/plugins/hop.lua
   {
