@@ -36,8 +36,8 @@ for file in *.ts; do
         # ffmpeg를 사용하여 변환
         echo "  변환 시작: $file -> $output"
         
-        # 변환 실행 (전체 영상, 일반 품질 설정)
-        if ffmpeg -i "$file" -c:v libx264 -c:a aac -crf 23 -preset medium "$output" -y 2>/dev/null; then
+        # 변환 실행 (전체 영상, 용량 최적화 설정)
+        if ffmpeg -i "$file" -c:v libx264 -c:a aac -crf 28 -preset slow -b:a 128k "$output" -y 2>/dev/null; then
             echo "  ✓ 성공: $output"
             converted=$((converted + 1))
         else
