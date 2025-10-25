@@ -292,12 +292,16 @@ def main():
   (미지정시 자동 감지)
 
 사용 예시:
-  %(prog)s                          # 현재 폴더의 모든 MP4 파일 처리 (자동 감지)
+  # 대화형 모드
+  %(prog)s
+
+  # 명령줄 옵션 모드
   %(prog)s --model medium           # medium 모델 사용
   %(prog)s --language ko            # 한국어로 지정
-  %(prog)s --language en --model large  # 영어, large 모델
-  %(prog)s --model large --format vtt  # large 모델로 VTT 형식 생성
+  %(prog)s -l en -m large           # 영어, large 모델
+  %(prog)s -m large -f vtt          # large 모델로 VTT 형식 생성
   %(prog)s video.mp4                # 특정 파일만 처리
+  %(prog)s -l ko -m small *.mp4     # 모든 MP4 파일을 한국어로
         """
     )
 
@@ -310,14 +314,14 @@ def main():
     parser.add_argument(
         "-m", "--model",
         choices=["tiny", "base", "small", "medium", "large"],
-        default="base",
+        default=None,
         help="Whisper 모델 선택 (기본값: base)"
     )
 
     parser.add_argument(
         "-f", "--format",
         choices=["srt", "vtt", "txt", "json"],
-        default="srt",
+        default=None,
         help="출력 형식 (기본값: srt)"
     )
 
@@ -334,9 +338,23 @@ def main():
     if not check_dependencies():
         sys.exit(1)
 
-    # 옵션이 하나도 제공되지 않은 경우 (파일명도 없고 옵션도 없는 경우)
-    # sys.argv가 [스크립트명] 하나만 있으면 대화형 메뉴 표시
-    if len(sys.argv) == 1:
+    # 명령줄 옵션이 제공되었는지 확인
+    has_cli_options = args.model or args.format or args.language or args.files
+
+    if has_cli_options:
+        # 명령줄 모드
+        language = args.language
+        model = args.model if args.model else "base"
+        output_format = args.format if args.format else "srt"
+
+        print("\n" + "="*50)
+        print("명령줄 모드로 실행")
+        print(f"  언어: {language if language else '자동 감지'}")
+        print(f"  모델: {model}")
+        print(f"  형식: {output_format}")
+        print("="*50 + "\n")
+    else:
+        # 대화형 모드
         # MP4 파일이 있는지 먼저 확인
         mp4_files = glob.glob("*.mp4")
         mp4_files.extend(glob.glob("*.MP4"))
@@ -347,11 +365,6 @@ def main():
 
         # 대화형 메뉴 표시
         language, model, output_format = show_interactive_menu()
-    else:
-        # 명령줄 인자가 있는 경우 기존 방식 사용
-        language = args.language
-        model = args.model
-        output_format = args.format
 
     # 처리할 파일 목록 생성
     if args.files:

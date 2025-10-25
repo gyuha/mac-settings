@@ -8,6 +8,7 @@ import os
 import sys
 import re
 import glob
+import argparse
 from pathlib import Path
 
 # 필수 라이브러리 확인
@@ -206,11 +207,41 @@ def show_language_menu():
     return src_lang, dest_lang, replace_original
 
 
-def main():
-    # 의존성 확인
-    if not check_dependencies():
-        sys.exit(1)
+def parse_arguments():
+    """명령줄 인자를 파싱합니다."""
+    parser = argparse.ArgumentParser(
+        description='SRT 자막 파일을 번역합니다.',
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+사용 예시:
+  # 대화형 모드
+  %(prog)s
 
+  # 명령줄 옵션 모드
+  %(prog)s --src ko --dest en
+  %(prog)s -s en -d ko --output replace
+  %(prog)s -s ja -d ko -o new
+
+지원 언어:
+  ko : 한국어
+  en : 영어
+  ja : 일본어
+        """
+    )
+
+    parser.add_argument('-s', '--src', '--source',
+                        help='원본 언어 코드 (ko, en, ja)')
+    parser.add_argument('-d', '--dest', '--target',
+                        help='대상 언어 코드 (ko, en, ja)')
+    parser.add_argument('-o', '--output',
+                        choices=['new', 'replace'],
+                        help='출력 모드: new=새 파일 생성, replace=원본 대체')
+
+    return parser.parse_args()
+
+
+def process_files(src_lang, dest_lang, replace_original):
+    """SRT 파일들을 처리합니다."""
     # 현재 폴더의 SRT 파일 찾기
     srt_files = glob.glob("*.srt")
     srt_files.extend(glob.glob("*.SRT"))
@@ -218,9 +249,6 @@ def main():
     if not srt_files:
         print("현재 폴더에 SRT 파일을 찾을 수 없습니다.")
         return
-
-    # 언어 선택
-    src_lang, dest_lang, replace_original = show_language_menu()
 
     print(f"총 {len(srt_files)}개의 파일을 처리합니다.\n")
 
@@ -266,6 +294,55 @@ def main():
                 print(f"오류 발생 ({srt_file}): {e}\n")
 
     print("모든 작업이 완료되었습니다.")
+
+
+def main():
+    # 의존성 확인
+    if not check_dependencies():
+        sys.exit(1)
+
+    # 명령줄 인자 파싱
+    args = parse_arguments()
+
+    # 명령줄 옵션이 제공되었는지 확인
+    has_cli_options = args.src or args.dest or args.output
+
+    if has_cli_options:
+        # 명령줄 모드: 모든 필수 옵션이 있는지 확인
+        if not args.src:
+            print("오류: 원본 언어를 지정해야 합니다. (--src 또는 -s)")
+            sys.exit(1)
+        if not args.dest:
+            print("오류: 대상 언어를 지정해야 합니다. (--dest 또는 -d)")
+            sys.exit(1)
+
+        src_lang = args.src
+        dest_lang = args.dest
+        replace_original = (args.output == 'replace') if args.output else False
+
+        # 유효한 언어 코드 확인
+        valid_langs = ['ko', 'en', 'ja']
+        if src_lang not in valid_langs:
+            print(f"오류: 유효하지 않은 원본 언어 코드: {src_lang}")
+            print(f"지원 언어: {', '.join(valid_langs)}")
+            sys.exit(1)
+        if dest_lang not in valid_langs:
+            print(f"오류: 유효하지 않은 대상 언어 코드: {dest_lang}")
+            print(f"지원 언어: {', '.join(valid_langs)}")
+            sys.exit(1)
+
+        print("\n" + "="*50)
+        print("명령줄 모드로 실행")
+        print(f"  원본 언어: {src_lang}")
+        print(f"  대상 언어: {dest_lang}")
+        print(f"  저장 방식: {'원본 대체 (백업 생성)' if replace_original else '새 파일 생성'}")
+        print("="*50 + "\n")
+    else:
+        # 대화형 모드
+        src_lang, dest_lang, replace_original = show_language_menu()
+
+    # 파일 처리
+    process_files(src_lang, dest_lang, replace_original)
 
 
 if __name__ == "__main__":
