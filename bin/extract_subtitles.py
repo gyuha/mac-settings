@@ -219,12 +219,12 @@ def show_interactive_menu():
         print("\n[2단계] 인식 모델을 선택하세요 (방향키로 이동, Enter로 선택):")
         model_options = [
             "tiny   - 가장 빠름, 낮은 정확도 (~1GB RAM)",
-            "base   - 빠름, 적절한 정확도 (~1GB RAM) [추천]",
-            "small  - 균형잡힌 속도와 정확도 (~2GB RAM)",
+            "base   - 빠름, 적절한 정확도 (~1GB RAM)",
+            "small  - 균형잡힌 속도와 정확도 (~2GB RAM) [추천]",
             "medium - 높은 정확도, 느림 (~5GB RAM)",
             "large  - 최고 정확도, 매우 느림 (~10GB RAM)"
         ]
-        terminal_menu = TerminalMenu(model_options, title="")
+        terminal_menu = TerminalMenu(model_options, title="", cursor_index=2)
         model_idx = terminal_menu.show()
 
         if model_idx is None:
