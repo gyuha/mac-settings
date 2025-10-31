@@ -38,6 +38,7 @@ function fzfp() {
 
 [ -s /opt/homebrew/bin/pyenv ] && . $HOME/.settings/conf/pyenv.sh
 [ -s /opt/homebrew/bin/jenv ] && . $HOME/.settings/conf/jenv.sh
+[ -f $HOME/.settings/conf/ccv.bash ] && . $HOME/.settings/conf/ccv.bash
 
 # Basic ZSH configurations
 HISTFILE=~/.zsh_history
