@@ -1,10 +1,9 @@
 # ccv
 # This bash function was taken from the following Reddit post: https://www.reddit.com/r/ClaudeAI/comments/1lkfz1h/how_i_use_claude_code/
-# ccv.bat for window ccv.bash for mac
-# usage in terminul: ccv ccv -y (skip permission) ccv -r (resume session) ccv -ry (skip permission and resume seesion)
+# usage in terminul: cc cc -y (skip permission) cc -r (resume session) cc -ry (skip permission and resume seesion)
 # REF : https://github.com/NEWBIE0413/ccv/blob/main/ccv.bash
 
-function ccv() {
+function cc() {
     local env_vars=(
         "ENABLE_BACKGROUND_TASKS=true"
         "FORCE_AUTO_BACKGROUND_TASKS=true"
