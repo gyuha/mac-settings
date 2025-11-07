@@ -302,6 +302,8 @@ def main():
   %(prog)s -m large -f vtt          # large 모델로 VTT 형식 생성
   %(prog)s video.mp4                # 특정 파일만 처리
   %(prog)s -l ko -m small *.mp4     # 모든 MP4 파일을 한국어로
+  %(prog)s -r                       # 하위 폴더 포함 재귀적 처리
+  %(prog)s -r -l ko -m small        # 재귀 모드로 한국어 인식
         """
     )
 
@@ -332,6 +334,12 @@ def main():
         help="음성 언어 코드 (예: ko, en, ja, zh 등, 미지정시 자동 감지)"
     )
 
+    parser.add_argument(
+        "-r", "--recursive",
+        action="store_true",
+        help="하위 폴더 포함하여 재귀적으로 MP4 파일 처리"
+    )
+
     args = parser.parse_args()
 
     # 의존성 확인
@@ -339,7 +347,7 @@ def main():
         sys.exit(1)
 
     # 명령줄 옵션이 제공되었는지 확인
-    has_cli_options = args.model or args.format or args.language or args.files
+    has_cli_options = args.model or args.format or args.language or args.files or args.recursive
 
     if has_cli_options:
         # 명령줄 모드
@@ -352,6 +360,8 @@ def main():
         print(f"  언어: {language if language else '자동 감지'}")
         print(f"  모델: {model}")
         print(f"  형식: {output_format}")
+        if args.recursive:
+            print(f"  재귀 모드: 예 (하위 폴더 포함)")
         print("="*50 + "\n")
     else:
         # 대화형 모드
@@ -370,8 +380,15 @@ def main():
     if args.files:
         mp4_files = args.files
     else:
-        mp4_files = glob.glob("*.mp4")
-        mp4_files.extend(glob.glob("*.MP4"))
+        if args.recursive:
+            # 재귀적으로 모든 MP4 파일 찾기
+            mp4_files = []
+            for pattern in ["**/*.mp4", "**/*.MP4"]:
+                mp4_files.extend(glob.glob(pattern, recursive=True))
+        else:
+            # 현재 폴더의 MP4 파일만
+            mp4_files = glob.glob("*.mp4")
+            mp4_files.extend(glob.glob("*.MP4"))
 
     if not mp4_files:
         print("MP4 파일을 찾을 수 없습니다.")

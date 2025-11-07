@@ -221,6 +221,7 @@ def parse_arguments():
   %(prog)s --src ko --dest en
   %(prog)s -s en -d ko --output replace
   %(prog)s -s ja -d ko -o new
+  %(prog)s -s en -d ko -r  # 하위 폴더 포함 재귀 검색
 
 지원 언어:
   ko : 한국어
@@ -236,18 +237,28 @@ def parse_arguments():
     parser.add_argument('-o', '--output',
                         choices=['new', 'replace'],
                         help='출력 모드: new=새 파일 생성, replace=원본 대체')
+    parser.add_argument('-r', '--recursive',
+                        action='store_true',
+                        help='하위 폴더를 포함하여 재귀적으로 검색')
 
     return parser.parse_args()
 
 
-def process_files(src_lang, dest_lang, replace_original):
+def process_files(src_lang, dest_lang, replace_original, recursive=False):
     """SRT 파일들을 처리합니다."""
-    # 현재 폴더의 SRT 파일 찾기
-    srt_files = glob.glob("*.srt")
-    srt_files.extend(glob.glob("*.SRT"))
+    # SRT 파일 찾기
+    if recursive:
+        # 재귀적으로 하위 폴더 포함
+        srt_files = glob.glob("**/*.srt", recursive=True)
+        srt_files.extend(glob.glob("**/*.SRT", recursive=True))
+    else:
+        # 현재 폴더만
+        srt_files = glob.glob("*.srt")
+        srt_files.extend(glob.glob("*.SRT"))
 
     if not srt_files:
-        print("현재 폴더에 SRT 파일을 찾을 수 없습니다.")
+        search_scope = "현재 폴더와 하위 폴더" if recursive else "현재 폴더"
+        print(f"{search_scope}에 SRT 파일을 찾을 수 없습니다.")
         return
 
     print(f"총 {len(srt_files)}개의 파일을 처리합니다.\n")
@@ -342,7 +353,8 @@ def main():
         src_lang, dest_lang, replace_original = show_language_menu()
 
     # 파일 처리
-    process_files(src_lang, dest_lang, replace_original)
+    recursive = args.recursive if has_cli_options else False
+    process_files(src_lang, dest_lang, replace_original, recursive)
 
 
 if __name__ == "__main__":
