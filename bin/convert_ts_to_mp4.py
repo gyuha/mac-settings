@@ -10,6 +10,7 @@ import subprocess
 import sys
 import os
 import re
+import threading
 from pathlib import Path
 from typing import List, Tuple
 
@@ -112,6 +113,7 @@ def convert_file_with_progress(input_file: str, output_file: str, quality: int) 
         '-preset', settings['preset'],
         '-b:a', settings['audio_bitrate'],
         '-progress', 'pipe:1',  # 진행률 정보를 stdout으로 출력
+        '-nostdin',  # stdin 비활성화로 블로킹 방지
         '-y',
         output_file
     ]
@@ -122,42 +124,76 @@ def convert_file_with_progress(input_file: str, output_file: str, quality: int) 
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             universal_newlines=True,
-            bufsize=1
+            bufsize=1,
+            stdin=subprocess.DEVNULL  # stdin 명시적으로 차단
         )
 
+        # stderr를 별도 스레드에서 소비하여 버퍼 오버플로우 방지
+        stderr_lines = []
+        def consume_stderr():
+            try:
+                for line in process.stderr:
+                    stderr_lines.append(line)
+            except:
+                pass
+
+        stderr_thread = threading.Thread(target=consume_stderr, daemon=True)
+        stderr_thread.start()
+
         current_time = 0.0
+        last_update = 0.0
 
         # ffmpeg 출력 파싱
-        for line in process.stdout:
-            line = line.strip()
+        try:
+            for line in process.stdout:
+                line = line.strip()
 
-            # out_time_ms 값에서 현재 진행 시간 추출
-            if line.startswith('out_time_ms='):
-                try:
-                    microseconds = int(line.split('=')[1])
-                    current_time = microseconds / 1_000_000  # 마이크로초를 초로 변환
+                # out_time_ms 값에서 현재 진행 시간 추출
+                if line.startswith('out_time_ms='):
+                    try:
+                        microseconds = int(line.split('=')[1])
+                        current_time = microseconds / 1_000_000  # 마이크로초를 초로 변환
 
-                    if duration > 0:
-                        progress = min((current_time / duration) * 100, 100)
-                        bar_length = 40
-                        filled = int(bar_length * progress / 100)
-                        bar = '█' * filled + '░' * (bar_length - filled)
+                        # 5초마다 진행률 업데이트 (출력 빈도 감소)
+                        if duration > 0 and (current_time - last_update >= 5.0 or current_time >= duration):
+                            progress = min((current_time / duration) * 100, 100)
+                            bar_length = 40
+                            filled = int(bar_length * progress / 100)
+                            bar = '█' * filled + '░' * (bar_length - filled)
 
-                        # 진행률 표시 (같은 줄에 업데이트)
-                        print(f'\r  {Colors.CYAN}[{bar}]{Colors.RESET} '
-                              f'{Colors.BOLD}{progress:.1f}%{Colors.RESET} '
-                              f'({format_time(current_time)}/{format_time(duration)})',
-                              end='', flush=True)
-                except (ValueError, IndexError):
-                    pass
+                            # 진행률 표시 (같은 줄에 업데이트)
+                            print(f'\r  {Colors.CYAN}[{bar}]{Colors.RESET} '
+                                  f'{Colors.BOLD}{progress:.1f}%{Colors.RESET} '
+                                  f'({format_time(current_time)}/{format_time(duration)})',
+                                  end='', flush=True)
+                            last_update = current_time
+                    except (ValueError, IndexError):
+                        pass
+        except KeyboardInterrupt:
+            print(f'\n  {Colors.YELLOW}사용자에 의해 중단됨{Colors.RESET}')
+            process.kill()
+            return False
 
-        process.wait()
+        # 프로세스 종료 대기 (타임아웃 없음)
+        returncode = process.wait()
+        stderr_thread.join(timeout=1.0)  # stderr 스레드 종료 대기
         print()  # 줄바꿈
 
-        return process.returncode == 0
+        # stderr 출력 확인 (에러 로깅용)
+        if returncode != 0 and stderr_lines:
+            print(f'  {Colors.YELLOW}ffmpeg 오류 상세:{Colors.RESET}')
+            # 마지막 10줄만 출력
+            for line in stderr_lines[-10:]:
+                print(f'  {line.rstrip()}')
+
+        return returncode == 0
 
     except Exception as e:
         print(f'\r  {Colors.RED}✗ 오류 발생: {str(e)}{Colors.RESET}')
+        try:
+            process.kill()  # 프로세스 강제 종료
+        except:
+            pass
         return False
 
 

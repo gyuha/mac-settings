@@ -1,0 +1,366 @@
+[
+    {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "threading",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "threading",
+        "description": "threading",
+        "detail": "threading",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "Path",
+        "importPath": "pathlib",
+        "description": "pathlib",
+        "isExtraImport": true,
+        "detail": "pathlib",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "Tuple",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "glob",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "glob",
+        "description": "glob",
+        "detail": "glob",
+        "documentation": {}
+    },
+    {
+        "label": "Colors",
+        "kind": 6,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "class Colors:\n    GREEN = '\\033[92m'\n    RED = '\\033[91m'\n    YELLOW = '\\033[93m'\n    BLUE = '\\033[94m'\n    CYAN = '\\033[96m'\n    RESET = '\\033[0m'\n    BOLD = '\\033[1m'\n# 품질 설정\nQUALITY_SETTINGS = {",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "show_banner",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def show_banner():\n    \"\"\"배너 출력\"\"\"\n    print(f\"{Colors.BOLD}{Colors.CYAN}=== TS to MP4 Converter ==={Colors.RESET}\")\n    print()\ndef get_video_duration(file_path: str) -> float:\n    \"\"\"ffprobe를 사용하여 비디오 길이(초) 가져오기\"\"\"\n    try:\n        cmd = [\n            'ffprobe',\n            '-v', 'error',",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "get_video_duration",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def get_video_duration(file_path: str) -> float:\n    \"\"\"ffprobe를 사용하여 비디오 길이(초) 가져오기\"\"\"\n    try:\n        cmd = [\n            'ffprobe',\n            '-v', 'error',\n            '-show_entries', 'format=duration',\n            '-of', 'default=noprint_wrappers=1:nokey=1',\n            file_path\n        ]",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "format_time",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def format_time(seconds: float) -> str:\n    \"\"\"초를 HH:MM:SS 형식으로 변환\"\"\"\n    hours = int(seconds // 3600)\n    minutes = int((seconds % 3600) // 60)\n    secs = int(seconds % 60)\n    return f\"{hours:02d}:{minutes:02d}:{secs:02d}\"\ndef format_size(bytes_size: int) -> str:\n    \"\"\"바이트를 읽기 쉬운 형식으로 변환\"\"\"\n    for unit in ['B', 'KB', 'MB', 'GB']:\n        if bytes_size < 1024.0:",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "format_size",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def format_size(bytes_size: int) -> str:\n    \"\"\"바이트를 읽기 쉬운 형식으로 변환\"\"\"\n    for unit in ['B', 'KB', 'MB', 'GB']:\n        if bytes_size < 1024.0:\n            return f\"{bytes_size:.1f}{unit}\"\n        bytes_size /= 1024.0\n    return f\"{bytes_size:.1f}TB\"\ndef convert_file_with_progress(input_file: str, output_file: str, quality: int) -> bool:\n    \"\"\"\n    파일 변환 (진행률 표시 포함)",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "convert_file_with_progress",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def convert_file_with_progress(input_file: str, output_file: str, quality: int) -> bool:\n    \"\"\"\n    파일 변환 (진행률 표시 포함)\n    Returns:\n        bool: 변환 성공 여부\n    \"\"\"\n    settings = QUALITY_SETTINGS[quality]\n    # 비디오 총 길이 가져오기\n    duration = get_video_duration(input_file)\n    cmd = [",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "find_ts_files",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def find_ts_files(recursive: bool) -> List[Path]:\n    \"\"\"\n    .ts 파일 찾기\n    Args:\n        recursive: 하위 폴더 포함 여부\n    Returns:\n        List[Path]: 찾은 .ts 파일 목록\n    \"\"\"\n    current_dir = Path('.')\n    if recursive:",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "convert_files",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def convert_files(quality: int, delete_ts: bool, recursive: bool) -> Tuple[int, int, int]:\n    \"\"\"\n    파일 변환 메인 로직\n    Returns:\n        Tuple[int, int, int]: (성공 수, 실패 수, 삭제된 파일 수)\n    \"\"\"\n    settings = QUALITY_SETTINGS[quality]\n    print(f\"{Colors.BOLD}선택된 품질:{Colors.RESET} {settings['name']} (CRF {settings['crf']})\")\n    if delete_ts:\n        print(f\"{Colors.BOLD}변환 완료 후 원본 TS 파일 삭제:{Colors.RESET} {Colors.YELLOW}예{Colors.RESET}\")",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "def main():\n    \"\"\"메인 함수\"\"\"\n    parser = argparse.ArgumentParser(\n        description='TS to MP4 Converter - .ts 파일을 .mp4로 변환',\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\n예시:\n  %(prog)s -q 2               # 중간화질로 변환만\n  %(prog)s -q 4 -d            # 최저화질로 변환 후 TS 파일 삭제\n  %(prog)s -q 2 -r            # 하위 폴더 포함 재귀적으로 변환",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "QUALITY_SETTINGS",
+        "kind": 5,
+        "importPath": "convert_ts_to_mp4",
+        "description": "convert_ts_to_mp4",
+        "peekOfCode": "QUALITY_SETTINGS = {\n    1: {\n        'crf': 18,\n        'preset': 'slow',\n        'audio_bitrate': '192k',\n        'name': '고화질'\n    },\n    2: {\n        'crf': 23,\n        'preset': 'medium',",
+        "detail": "convert_ts_to_mp4",
+        "documentation": {}
+    },
+    {
+        "label": "check_ffmpeg",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def check_ffmpeg():\n    \"\"\"ffmpeg가 설치되어 있는지 확인합니다.\"\"\"\n    try:\n        subprocess.run([\"ffmpeg\", \"-version\"],\n                      stdout=subprocess.DEVNULL,\n                      stderr=subprocess.DEVNULL,\n                      check=True)\n        return True\n    except (subprocess.CalledProcessError, FileNotFoundError):\n        return False",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "check_dependencies",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def check_dependencies():\n    \"\"\"필수 의존성을 확인하고 설치 안내를 표시합니다.\"\"\"\n    missing = []\n    if not WHISPER_AVAILABLE:\n        missing.append(\"openai-whisper\")\n    if not check_ffmpeg():\n        missing.append(\"ffmpeg\")\n    if not MENU_AVAILABLE:\n        missing.append(\"simple-term-menu\")\n    if missing:",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "extract_subtitles",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def extract_subtitles(video_file, model_name=\"base\", output_format=\"srt\", language=None):\n    \"\"\"\n    비디오 파일에서 자막을 추출합니다.\n    Args:\n        video_file (str): 비디오 파일 경로\n        model_name (str): Whisper 모델 이름 (tiny, base, small, medium, large)\n        output_format (str): 출력 형식 (srt, vtt, txt, json)\n        language (str): 음성 언어 (ko, en, ja, zh 등, None이면 자동 감지)\n    \"\"\"\n    print(f\"\\n처리 중: {video_file}\")",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "format_timestamp",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def format_timestamp(seconds):\n    \"\"\"초를 SRT 타임스탬프 형식으로 변환 (HH:MM:SS,mmm)\"\"\"\n    hours = int(seconds // 3600)\n    minutes = int((seconds % 3600) // 60)\n    secs = int(seconds % 60)\n    millis = int((seconds % 1) * 1000)\n    return f\"{hours:02d}:{minutes:02d}:{secs:02d},{millis:03d}\"\ndef format_timestamp_vtt(seconds):\n    \"\"\"초를 VTT 타임스탬프 형식으로 변환 (HH:MM:SS.mmm)\"\"\"\n    hours = int(seconds // 3600)",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "format_timestamp_vtt",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def format_timestamp_vtt(seconds):\n    \"\"\"초를 VTT 타임스탬프 형식으로 변환 (HH:MM:SS.mmm)\"\"\"\n    hours = int(seconds // 3600)\n    minutes = int((seconds % 3600) // 60)\n    secs = int(seconds % 60)\n    millis = int((seconds % 1) * 1000)\n    return f\"{hours:02d}:{minutes:02d}:{secs:02d}.{millis:03d}\"\ndef save_srt(result, output_file):\n    \"\"\"SRT 형식으로 자막 저장\"\"\"\n    with open(output_file, \"w\", encoding=\"utf-8\") as f:",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "save_srt",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def save_srt(result, output_file):\n    \"\"\"SRT 형식으로 자막 저장\"\"\"\n    with open(output_file, \"w\", encoding=\"utf-8\") as f:\n        for i, segment in enumerate(result[\"segments\"], start=1):\n            f.write(f\"{i}\\n\")\n            f.write(f\"{format_timestamp(segment['start'])} --> {format_timestamp(segment['end'])}\\n\")\n            f.write(f\"{segment['text'].strip()}\\n\\n\")\ndef save_vtt(result, output_file):\n    \"\"\"VTT 형식으로 자막 저장\"\"\"\n    with open(output_file, \"w\", encoding=\"utf-8\") as f:",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "save_vtt",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def save_vtt(result, output_file):\n    \"\"\"VTT 형식으로 자막 저장\"\"\"\n    with open(output_file, \"w\", encoding=\"utf-8\") as f:\n        f.write(\"WEBVTT\\n\\n\")\n        for segment in result[\"segments\"]:\n            f.write(f\"{format_timestamp_vtt(segment['start'])} --> {format_timestamp_vtt(segment['end'])}\\n\")\n            f.write(f\"{segment['text'].strip()}\\n\\n\")\ndef save_txt(result, output_file):\n    \"\"\"일반 텍스트 형식으로 자막 저장\"\"\"\n    with open(output_file, \"w\", encoding=\"utf-8\") as f:",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "save_txt",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def save_txt(result, output_file):\n    \"\"\"일반 텍스트 형식으로 자막 저장\"\"\"\n    with open(output_file, \"w\", encoding=\"utf-8\") as f:\n        f.write(result[\"text\"])\ndef show_interactive_menu():\n    \"\"\"대화형 메뉴를 표시하고 사용자 선택을 받습니다.\"\"\"\n    print(\"\\n\" + \"=\"*50)\n    print(\"MP4 자막 추출 스크립트\")\n    print(\"=\"*50)\n    if MENU_AVAILABLE:",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "show_interactive_menu",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def show_interactive_menu():\n    \"\"\"대화형 메뉴를 표시하고 사용자 선택을 받습니다.\"\"\"\n    print(\"\\n\" + \"=\"*50)\n    print(\"MP4 자막 추출 스크립트\")\n    print(\"=\"*50)\n    if MENU_AVAILABLE:\n        # simple-term-menu를 사용한 방향키 메뉴\n        # 언어 선택\n        print(\"\\n[1단계] 언어를 선택하세요 (방향키로 이동, Enter로 선택):\")\n        language_options = [",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "extract_subtitles",
+        "description": "extract_subtitles",
+        "peekOfCode": "def main():\n    parser = argparse.ArgumentParser(\n        description=\"MP4 파일에서 자막을 추출합니다.\",\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\n모델 크기별 특징:\n  tiny   - 가장 빠르지만 정확도 낮음 (~1GB RAM)\n  base   - 빠르고 적절한 정확도 (기본값, ~1GB RAM)\n  small  - 균형잡힌 속도와 정확도 (~2GB RAM)\n  medium - 높은 정확도, 느린 속도 (~5GB RAM)",
+        "detail": "extract_subtitles",
+        "documentation": {}
+    },
+    {
+        "label": "SRTBlock",
+        "kind": 6,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "class SRTBlock:\n    \"\"\"SRT 자막 블록을 나타내는 클래스\"\"\"\n    def __init__(self, index, timestamp, text):\n        self.index = index\n        self.timestamp = timestamp\n        self.text = text\n    def __str__(self):\n        return f\"{self.index}\\n{self.timestamp}\\n{self.text}\\n\"\ndef parse_srt(file_path):\n    \"\"\"SRT 파일을 파싱합니다.\"\"\"",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "check_dependencies",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def check_dependencies():\n    \"\"\"필수 의존성을 확인하고 설치 안내를 표시합니다.\"\"\"\n    missing = []\n    if not TRANSLATOR_AVAILABLE:\n        missing.append(\"deep-translator\")\n    if not MENU_AVAILABLE:\n        missing.append(\"simple-term-menu\")\n    if missing:\n        print(\"\\n\" + \"=\"*60)\n        print(\"필수 라이브러리 미설치\")",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "parse_srt",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def parse_srt(file_path):\n    \"\"\"SRT 파일을 파싱합니다.\"\"\"\n    with open(file_path, 'r', encoding='utf-8') as f:\n        content = f.read()\n    # SRT 블록 파싱\n    blocks = []\n    pattern = r'(\\d+)\\n([\\d:,]+ --> [\\d:,]+)\\n((?:.*\\n)*?)(?=\\n\\d+\\n|$)'\n    matches = re.finditer(pattern, content, re.MULTILINE)\n    for match in matches:\n        index = match.group(1)",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "translate_text",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def translate_text(text, translator, src_lang, dest_lang):\n    \"\"\"텍스트를 번역합니다.\"\"\"\n    try:\n        result = translator.translate(text)\n        return result\n    except Exception as e:\n        print(f\"\\n번역 오류: {e}\")\n        return text\ndef translate_srt(input_file, output_file, src_lang, dest_lang):\n    \"\"\"SRT 파일을 번역합니다.\"\"\"",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "translate_srt",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def translate_srt(input_file, output_file, src_lang, dest_lang):\n    \"\"\"SRT 파일을 번역합니다.\"\"\"\n    print(f\"\\n처리 중: {input_file}\")\n    print(f\"원본 언어: {src_lang}\")\n    print(f\"대상 언어: {dest_lang}\")\n    # SRT 파싱\n    print(\"자막 파일 파싱 중...\")\n    blocks = parse_srt(input_file)\n    print(f\"총 {len(blocks)}개의 자막 블록을 찾았습니다.\")\n    # 번역기 초기화",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "show_language_menu",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def show_language_menu():\n    \"\"\"언어 선택 메뉴를 표시합니다.\"\"\"\n    print(\"\\n\" + \"=\"*50)\n    print(\"SRT 자막 번역 스크립트\")\n    print(\"=\"*50)\n    # 지원 언어 목록\n    languages = [\n        (\"한국어\", \"ko\"),\n        (\"영어\", \"en\"),\n        (\"일본어\", \"ja\")",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "parse_arguments",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def parse_arguments():\n    \"\"\"명령줄 인자를 파싱합니다.\"\"\"\n    parser = argparse.ArgumentParser(\n        description='SRT 자막 파일을 번역합니다.',\n        formatter_class=argparse.RawDescriptionHelpFormatter,\n        epilog=\"\"\"\n사용 예시:\n  # 대화형 모드\n  %(prog)s\n  # 명령줄 옵션 모드",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "process_files",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def process_files(src_lang, dest_lang, replace_original, recursive=False):\n    \"\"\"SRT 파일들을 처리합니다.\"\"\"\n    # SRT 파일 찾기\n    if recursive:\n        # 재귀적으로 하위 폴더 포함\n        srt_files = glob.glob(\"**/*.srt\", recursive=True)\n        srt_files.extend(glob.glob(\"**/*.SRT\", recursive=True))\n    else:\n        # 현재 폴더만\n        srt_files = glob.glob(\"*.srt\")",
+        "detail": "translate_srt",
+        "documentation": {}
+    },
+    {
+        "label": "main",
+        "kind": 2,
+        "importPath": "translate_srt",
+        "description": "translate_srt",
+        "peekOfCode": "def main():\n    # 의존성 확인\n    if not check_dependencies():\n        sys.exit(1)\n    # 명령줄 인자 파싱\n    args = parse_arguments()\n    # 명령줄 옵션이 제공되었는지 확인\n    has_cli_options = args.src or args.dest or args.output\n    if has_cli_options:\n        # 명령줄 모드: 모든 필수 옵션이 있는지 확인",
+        "detail": "translate_srt",
+        "documentation": {}
+    }
+]
