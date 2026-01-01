@@ -31,4 +31,5 @@ do
 	install "$entry"
 done
 
+# REF : https://github.com/the0807/ff
 curl -fsSL https://raw.githubusercontent.com/the0807/ff/main/install.sh | bash
