@@ -74,13 +74,13 @@ return {
 
 
   -- 알림/메시지 UI
-  { "rcarriga/nvim-notify", config = function() vim.notify = require("notify") end },
-  {
-    "folke/noice.nvim",
-    event = "VeryLazy",
-    dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
-    opts = { presets = { lsp_doc_border = true } }
-  },
+  --   { "rcarriga/nvim-notify", config = function() vim.notify = require("notify") end },
+  --   {
+  --     "folke/noice.nvim",
+  --     event = "VeryLazy",
+  --     dependencies = { "MunifTanjim/nui.nvim", "rcarriga/nvim-notify" },
+  --     opts = { presets = { lsp_doc_border = true } }
+  --   },
 
 
   -- lua/plugins/hop.lua
