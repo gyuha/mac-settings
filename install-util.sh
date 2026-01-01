@@ -14,6 +14,7 @@ declare -a Apps=(
 "ripgrep"
 "fd"
 "fasd"
+"eza"
 "thefuck"
 "autojump"
 "bat"
@@ -29,3 +30,5 @@ for entry in "${Apps[@]}"
 do
 	install "$entry"
 done
+
+curl -fsSL https://raw.githubusercontent.com/the0807/ff/main/install.sh | bash
