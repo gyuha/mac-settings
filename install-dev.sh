@@ -49,13 +49,19 @@ install_volta() {
 	curl https://get.volta.sh | bash
 }
 
-ln -snf ~/.settings/conf/ideavimrc ~/.ideavimrc
+install_mise() {
+  curl https://mise.run | sh
+  echo 'eval "$(mise activate zsh --shims)"' >> ~/.zprofile # this sets up non-interactive sessions
+  echo 'eval "$(mise activate zsh)"' >> ~/.zshrc    # this sets up interactive sessions
+}
+
+# ln -snf ~/.settings/conf/ideavimrc ~/.ideavimrc
 
 for entry in "${Apps[@]}"
 do
 	install "$entry"
 done
 
-install_nvs
 install_uv
-# install_volta
+install_mise
+
