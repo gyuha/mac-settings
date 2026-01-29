@@ -24,6 +24,7 @@ declare -a Apps=(
 "lf" # file
 "ncdu" # Disk usage analyzer with an ncurses interface.
 "htop"
+"fontconfig"
 )
 
 for entry in "${Apps[@]}"

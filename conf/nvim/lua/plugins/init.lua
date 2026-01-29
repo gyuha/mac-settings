@@ -86,7 +86,7 @@ return {
   -- lua/plugins/hop.lua
   {
     "smoka7/hop.nvim", -- 공식: phaazon/hop.nvim, 활발한 포크: smoka7/hop.nvim
-    branch = "v2",      -- hop v2 API
+    version = "*",
     config = function()
       local hop = require("hop")
       hop.setup({
