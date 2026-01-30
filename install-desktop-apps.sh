@@ -42,8 +42,10 @@ declare -a Apps=(
 "shottr"
 "keyboard-cowboy" # Keyboard Cowboy https://github.com/zenangst/KeyboardCowboy
 "mpv" # Media player based on MPlayer and mplayer2
-"affinity"
-"ghostty"
+"affinity" # Graphic App
+"ghostty" # Terminal App
+"tabby" # Ssh & Terminal App
+
 )
 
 # 미사용
