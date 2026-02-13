@@ -15,7 +15,6 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 set -o vi
 
-alias tmux="tmux -2"
 alias tn='ts-node'
 
 export FZF_DEFAULT_OPTS='
@@ -58,5 +57,8 @@ alias la='ls -A'
 alias l='ls -CF'
 alias lt='tree -d'
 alias grep='grep --color=auto'
+
+## appliation
+alias oc='opencode'
 
 PATH=$PATH:~/.settings/bin
