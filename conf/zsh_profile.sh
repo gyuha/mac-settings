@@ -45,7 +45,8 @@ HISTSIZE=10000
 SAVEHIST=10000
 setopt appendhistory
 
-alias tmux="tmux -2"
+# alias tmux="tmux -2"
+alias tm="tmux -2"
 alias vi='nvim'
 alias dgrep="grep --exclude-dir='.git' --exclude='*.swp'"
 alias pn='pnpm'
