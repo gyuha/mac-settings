@@ -137,4 +137,44 @@ return {
     end,
   },
 
+  -- 포맷팅 (conform.nvim)
+  {
+    "stevearc/conform.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    config = function()
+      local conform = require("conform")
+      conform.setup({
+        formatters_by_ft = {
+          javascript      = { "prettier" },
+          typescript      = { "prettier" },
+          javascriptreact = { "prettier" },
+          typescriptreact = { "prettier" },
+          html            = { "prettier" },
+          css             = { "prettier" },
+          json            = { "prettier" },
+          yaml            = { "prettier" },
+          markdown        = { "prettier" },
+          python          = { "isort", "black" },
+          lua             = { "stylua" },
+          sh              = { "shfmt" },
+          bash            = { "shfmt" },
+        },
+        -- = 연산자로 포맷팅 (visual 선택 후 = 키)
+        formatters = {
+          shfmt = { prepend_args = { "-i", "2" } },
+        },
+      })
+
+      -- = 키를 conform 포맷팅으로 연결
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+
+      -- 저장 시 자동 포맷팅 (선택)
+      -- vim.api.nvim_create_autocmd("BufWritePre", {
+      --   pattern = "*",
+      --   callback = function(args)
+      --     conform.format({ bufnr = args.buf, lsp_fallback = true })
+      --   end,
+      -- })
+    end,
+  },
 }
