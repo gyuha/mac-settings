@@ -25,6 +25,7 @@ declare -a Apps=(
 "ncdu" # Disk usage analyzer with an ncurses interface.
 "htop"
 "fontconfig"
+"elgar328/nfd2nfc/nfd2nfc" # MacOS 자소 수정 https://github.com/elgar328/nfd2nfc/blob/main/docs/README.ko.md
 )
 
 for entry in "${Apps[@]}"
