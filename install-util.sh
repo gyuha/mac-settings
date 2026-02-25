@@ -9,23 +9,32 @@ install() {
 }
 
 declare -a Apps=(
-"noevim"
-"fzf"
-"ripgrep"
-"fd"
-"fasd"
-"eza"
-"thefuck"
 "autojump"
 "bat"
-"tmux"
-"noborus/tap/ov"         # https://noborus.github.io/ov/
-"tree"
+"elgar328/nfd2nfc/nfd2nfc" # MacOS 자소 수정 https://github.com/elgar328/nfd2nfc/blob/main/docs/README.ko.md
+"eza"
+"fasd"
+"fd" 
+"ffmpeg-full" 
+"font-symbols-only-nerd-font"
+"fontconfig"
+"fzf" 
+"htop"
+"imagemagick-full" 
+"jq" 
 "lf" # file
 "ncdu" # Disk usage analyzer with an ncurses interface.
-"htop"
-"fontconfig"
-"elgar328/nfd2nfc/nfd2nfc" # MacOS 자소 수정 https://github.com/elgar328/nfd2nfc/blob/main/docs/README.ko.md
+"noborus/tap/ov"         # https://noborus.github.io/ov/
+"noevim"
+"poppler"
+"resvg" 
+"ripgrep" 
+"sevenzip" 
+"thefuck"
+"tmux"
+"tree"
+"yazi" 
+"zoxide" 
 )
 
 for entry in "${Apps[@]}"

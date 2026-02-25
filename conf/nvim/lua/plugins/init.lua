@@ -177,4 +177,22 @@ return {
       -- })
     end,
   },
+
+  {
+    "VPavliashvili/json-nvim",
+    ft = "json",
+    cmd = {
+      "JsonFormatFile",
+      "JsonMinifyFile",
+      "JsonEscapeFile",
+      "JsonUnescapeFile",
+      "JsonKeysToCamelCase",
+      "JsonKeysToPascalCase",
+      "JsonKeysToSnakeCase",
+    },
+    keys = {
+      { "<leader>jff", "<cmd>JsonFormatFile<cr>", desc = "JSON: Format File" },
+      { "<leader>jmf", "<cmd>JsonMinifyFile<cr>", desc = "JSON: Minify File" },
+    },
+  },
 }
