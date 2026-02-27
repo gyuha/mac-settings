@@ -59,6 +59,8 @@ alias l='ls -CF'
 alias lt='tree -d'
 alias grep='grep --color=auto'
 
+alias y='yazi'
+
 ## appliation
 alias oc='opencode'
 
