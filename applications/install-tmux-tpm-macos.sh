@@ -35,4 +35,4 @@ echo
 echo "다음 단계:"
 echo "1) ~/.tmux.conf에 아래 줄을 추가하세요:"
 echo "   run '~/.tmux/plugins/tpm/tpm'"
-echo "2) tmux를 시작한 뒤 Prefix + I를 누르세요"
+echo "2) tmux를 시작한 뒤 Prefix(Ctrl+B) + I를 누르세요"
