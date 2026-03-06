@@ -6,8 +6,9 @@ Gyuha's Macos Setting...
 ## Installation
 ### brew install
 ```bash
-./homebrew.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
+
 터미널을 새로 띄우고,
 
 ```bash
