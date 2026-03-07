@@ -64,4 +64,4 @@ alias y='yazi'
 ## appliation
 alias oc='opencode'
 
-PATH=$PATH:~/.settings/bin
+export PATH="/opt/homebrew/bin:~/.settings/bin:$PATH"

@@ -10,6 +10,7 @@ install() {
 
 declare -a Apps=(
 "autojump"
+"bash"
 "bat"
 "elgar328/nfd2nfc/nfd2nfc" # MacOS 자소 수정 https://github.com/elgar328/nfd2nfc/blob/main/docs/README.ko.md
 "eza"
