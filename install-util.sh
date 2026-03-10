@@ -24,6 +24,7 @@ declare -a Apps=(
 "imagemagick-full" 
 "jq" 
 "lf" # file
+"mole" # Deep clean and optimize your Mac.
 "ncdu" # Disk usage analyzer with an ncurses interface.
 "noborus/tap/ov"         # https://noborus.github.io/ov/
 "noevim"

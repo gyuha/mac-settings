@@ -1,7 +1,9 @@
-# ccv
-# This bash function was taken from the following Reddit post: https://www.reddit.com/r/ClaudeAI/comments/1lkfz1h/how_i_use_claude_code/
-# usage in terminul: cc cc -y (skip permission) cc -r (resume session) cc -ry (skip permission and resume seesion)
-# REF : https://github.com/NEWBIE0413/ccv/blob/main/ccv.bash
+# cc - Claude Code launcher
+# Usage: cc [options]
+#   -y    Skip permissions + chrome + teammate mode
+#   -r    Resume session
+#   -ry   Resume + skip permissions + chrome + teammate mode
+# REF: https://github.com/NEWBIE0413/ccv/blob/main/ccv.bash
 
 function cc() {
   local env_vars=(
@@ -12,13 +14,11 @@ function cc() {
   )
 
   local claude_args=()
-  if [[ "$1" == "-y" ]]; then
-    claude_args+=("--dangerously-skip-permissions")
-  elif [[ "$1" == "-r" ]]; then
-    claude_args+=("--resume")
-  elif [[ "$1" == "-ry" ]] || [[ "$1" == "-yr" ]]; then
-    claude_args+=("--resume" "--dangerously-skip-permissions")
-  fi
+  local opt="${1:-}"
+
+  # Parse combined options (e.g., -ry, -yr)
+  [[ "$opt" == *r* ]] && claude_args+=("--resume")
+  [[ "$opt" == *y* ]] && claude_args+=("--chrome" "--teammate-mode" "auto" "--dangerously-skip-permissions")
 
   env "${env_vars[@]}" claude "${claude_args[@]}"
 }
