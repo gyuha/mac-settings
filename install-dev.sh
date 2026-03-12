@@ -9,6 +9,7 @@ declare -a Apps=(
 "tig"
 "gitui"
 "tmux"
+"lazygit"
 "bit" 	# Bit is a modern Git CLI.
 #"pyenv"
 #"pyenv-virtualenv"

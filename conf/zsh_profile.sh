@@ -60,6 +60,7 @@ alias lt='tree -d'
 alias grep='grep --color=auto'
 
 alias y='yazi'
+alias lg='lazygit'
 
 ## appliation
 alias oc='opencode'
