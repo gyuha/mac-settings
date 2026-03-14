@@ -65,4 +65,4 @@ alias lg='lazygit'
 ## appliation
 alias oc='opencode'
 
-export PATH="/opt/homebrew/bin:~/.settings/bin:$PATH"
+export PATH="/opt/homebrew/bin:$HOME/.settings/bin:$PATH"
