@@ -45,7 +45,7 @@ declare -a Apps=(
 "affinity" # Graphic App
 "ghostty" # Terminal App
 "tabby" # Ssh & Terminal App
-
+"clipgrab" # Downloads videos and audio from websites
 )
 
 # 미사용
