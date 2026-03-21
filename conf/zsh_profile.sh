@@ -46,7 +46,6 @@ SAVEHIST=10000
 setopt appendhistory
 
 # alias tmux="tmux -2"
-alias tm="tmux -2"
 alias vi='nvim'
 alias dgrep="grep --exclude-dir='.git' --exclude='*.swp'"
 alias pn='pnpm'
@@ -64,5 +63,7 @@ alias lg='lazygit'
 
 ## appliation
 alias oc='opencode'
+alias ge='gemini'
+alias co='codex --yolo --enable multi_agent'
 
 export PATH="/opt/homebrew/bin:$HOME/.settings/bin:$PATH"
