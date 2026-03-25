@@ -37,9 +37,10 @@ function cc() {
   if [[ "$opt" == -* ]]; then
     # Parse options
     [[ "$opt" == *g* ]] && service_type="g"
+    [[ "$opt" == *c* ]] && claude_args+=("--chrome")
     [[ "$opt" == *r* ]] && claude_args+=("--resume")
     [[ "$opt" == *w* ]] && use_worktree=true
-    [[ "$opt" == *y* ]] && claude_args+=("--chrome" "--teammate-mode" "auto" "--dangerously-skip-permissions")
+    [[ "$opt" == *y* ]] && claude_args+=("--teammate-mode" "auto" "--dangerously-skip-permissions")
 
     # If worktree option is set, get the name from second argument
     if [[ "$use_worktree" == true ]]; then
