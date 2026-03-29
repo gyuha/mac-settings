@@ -21,10 +21,11 @@
 
 function cc() {
   local env_vars=(
-    "ENABLE_BACKGROUND_TASKS=true"
-    "FORCE_AUTO_BACKGROUND_TASKS=true"
-    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true"
-    "CLAUDE_CODE_ENABLE_UNIFIED_READ_TOOL=true"
+    "ENABLE_BACKGROUND_TASKS=true"                  # 긴 작업을 백그라운드로 자동 전환
+    "FORCE_AUTO_BACKGROUND_TASKS=true"              # 확인 없이 바로 백그라운드 실행
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=true" # 텔레메트리 비활성화로 속도 향상
+    "CLAUDE_CODE_ENABLE_UNIFIED_READ_TOOL=true"     # Jupyter 노트북 포함 통합 파일 읽기
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1"        # Agent teams 기능 사용
   )
 
   local claude_args=()
@@ -64,7 +65,7 @@ function cc() {
       export API_TIMEOUT_MS="3000000"
       export ANTHROPIC_DEFAULT_HAIKU_MODEL="glm-4.5-air"
       export ANTHROPIC_DEFAULT_SONNET_MODEL="glm-4.7"
-      export ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5"
+      export ANTHROPIC_DEFAULT_OPUS_MODEL="glm-5.1"
       ;;
     "c")  # Claude 모드
       unset ANTHROPIC_AUTH_TOKEN
