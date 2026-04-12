@@ -60,6 +60,7 @@ alias grep='grep --color=auto'
 
 alias y='yazi'
 alias lg='lazygit'
+alias zl='zellij -l welcome'
 
 ## appliation
 alias oc='opencode'

@@ -34,6 +34,7 @@ declare -a Apps=(
 "sevenzip" 
 "thefuck"
 "tmux"
+"zellij"
 "tree"
 "yazi" 
 "zoxide" 
