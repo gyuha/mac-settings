@@ -67,4 +67,6 @@ alias oc='opencode'
 alias ge='gemini'
 alias co='codex --yolo --enable multi_agent'
 
+ccs() { command ccs "$@" --dangerously-skip-permissions; }
+
 export PATH="/opt/homebrew/bin:$HOME/.settings/bin:$PATH"
