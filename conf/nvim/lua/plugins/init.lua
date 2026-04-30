@@ -178,6 +178,45 @@ return {
     end,
   },
 
+  -- 퍼지 파인더 (VS Code Cmd+P 대응)
+  {
+    "nvim-telescope/telescope.nvim",
+    tag = "0.1.8",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    cmd = "Telescope",
+    keys = {
+      { "<C-p>",      "<cmd>Telescope find_files<cr>",  desc = "Find Files" },
+      { "<leader>ff", "<cmd>Telescope find_files<cr>",  desc = "Find Files" },
+      { "<leader>fg", "<cmd>Telescope live_grep<cr>",   desc = "Live Grep" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>",     desc = "Buffers" },
+      { "<leader>fr", "<cmd>Telescope oldfiles<cr>",    desc = "Recent Files" },
+      { "<leader>fs", "<cmd>Telescope grep_string<cr>", desc = "Grep Word" },
+    },
+    config = function()
+      local telescope = require("telescope")
+      local actions = require("telescope.actions")
+      telescope.setup({
+        defaults = {
+          mappings = {
+            i = {
+              ["<C-k>"] = actions.move_selection_previous,
+              ["<C-j>"] = actions.move_selection_next,
+              ["<esc>"] = actions.close,
+            },
+          },
+          file_ignore_patterns = { "node_modules", ".git/", "dist/", "build/" },
+        },
+        pickers = {
+          find_files = { hidden = true },
+        },
+      })
+      telescope.load_extension("fzf")
+    end,
+  },
+
   {
     "VPavliashvili/json-nvim",
     ft = "json",
