@@ -65,7 +65,7 @@ alias zl='zellij -l welcome'
 ## appliation
 alias oc='opencode'
 alias ge='gemini'
-alias co='codex --full-auto --enable multi_agent'
+alias co='codex --yolo --enable multi_agent'
 
 # ccs() { command ccs "$@" --permission-mode auto; }
 ccs() { command ccs "$@" --dangerously-skip-permissions; }
