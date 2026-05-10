@@ -8,5 +8,7 @@ npm install -g http-server
 # Tmux Attach App
 npm install -g tmux-attach
 
+npm install -g hunkdiff
+
 node -v
 npm -v
