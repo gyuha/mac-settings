@@ -46,6 +46,7 @@ declare -a Apps=(
 "ghostty" # Terminal App
 "tabby" # Ssh & Terminal App
 "clipgrab" # Downloads videos and audio from websites
+"sourcegit" # Git GUI Client
 )
 
 # 미사용
