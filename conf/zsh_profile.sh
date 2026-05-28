@@ -67,7 +67,10 @@ alias oc='opencode'
 alias ge='gemini'
 alias co='codex --yolo --enable multi_agent'
 
+# SourceGit open
+sg() { open -a SourceGit --args "$(cd "${1:-.}" && pwd)"; }
+
 # ccs() { command ccs "$@" --permission-mode auto; }
-cs() { command ccs "$@" --dangerously-skip-permissions; }
+cs() { command ccs "$@" --permission-mode auto; }
 
 export PATH="/opt/homebrew/bin:$HOME/.settings/bin:$PATH"
