@@ -73,4 +73,6 @@ sg() { open -a SourceGit --args "$(cd "${1:-.}" && pwd)"; }
 # ccs() { command ccs "$@" --permission-mode auto; }
 cs() { command ccs "$@" --permission-mode auto; }
 
+export CLAUDE_CODE_DISABLE_ALTERNATE_SCREEN=1
+
 export PATH="/opt/homebrew/bin:$HOME/.settings/bin:$PATH"
