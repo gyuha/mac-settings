@@ -182,29 +182,14 @@ def show_language_menu():
     dest_lang = languages[dest_idx][1]
     dest_name = languages[dest_idx][0]
 
-    # 파일 저장 옵션 선택
-    print(f"\n[3단계] 번역된 파일 저장 방식을 선택하세요 (방향키로 이동, Enter로 선택):")
-    save_options = [
-        "새 파일로 저장 (원본파일명_translated.srt)",
-        "원본 파일 대체 (백업: 원본파일명_backup.srt)"
-    ]
-    terminal_menu = TerminalMenu(save_options, title="")
-    save_idx = terminal_menu.show()
-
-    if save_idx is None:
-        print("\n취소되었습니다.")
-        sys.exit(0)
-
-    replace_original = (save_idx == 1)
-
     print("\n" + "="*50)
     print("선택 완료!")
     print(f"  원본 언어: {src_name} ({src_lang})")
     print(f"  대상 언어: {dest_name} ({dest_lang})")
-    print(f"  저장 방식: {'원본 대체 (백업 생성)' if replace_original else '새 파일 생성'}")
+    print(f"  저장 방식: 원본 파일 대체 (원본은 원본파일명_{src_lang}.srt로 보관)")
     print("="*50 + "\n")
 
-    return src_lang, dest_lang, replace_original
+    return src_lang, dest_lang
 
 
 def parse_arguments():
@@ -217,11 +202,9 @@ def parse_arguments():
   # 대화형 모드
   %(prog)s
 
-  # 명령줄 옵션 모드
+  # 명령줄 옵션 모드 (현재 폴더 및 하위 폴더의 모든 SRT 파일 처리)
   %(prog)s --src ko --dest en
-  %(prog)s -s en -d ko --output replace
-  %(prog)s -s ja -d ko -o new
-  %(prog)s -s en -d ko -r  # 하위 폴더 포함 재귀 검색
+  %(prog)s -s en -d ko
 
 지원 언어:
   ko : 한국어
@@ -234,31 +217,18 @@ def parse_arguments():
                         help='원본 언어 코드 (ko, en, ja)')
     parser.add_argument('-d', '--dest', '--target',
                         help='대상 언어 코드 (ko, en, ja)')
-    parser.add_argument('-o', '--output',
-                        choices=['new', 'replace'],
-                        help='출력 모드: new=새 파일 생성, replace=원본 대체')
-    parser.add_argument('-r', '--recursive',
-                        action='store_true',
-                        help='하위 폴더를 포함하여 재귀적으로 검색')
 
     return parser.parse_args()
 
 
-def process_files(src_lang, dest_lang, replace_original, recursive=False):
-    """SRT 파일들을 처리합니다."""
-    # SRT 파일 찾기
-    if recursive:
-        # 재귀적으로 하위 폴더 포함
-        srt_files = glob.glob("**/*.srt", recursive=True)
-        srt_files.extend(glob.glob("**/*.SRT", recursive=True))
-    else:
-        # 현재 폴더만
-        srt_files = glob.glob("*.srt")
-        srt_files.extend(glob.glob("*.SRT"))
+def process_files(src_lang, dest_lang):
+    """SRT 파일들을 처리합니다. 현재 폴더와 모든 하위 폴더를 검색합니다."""
+    # SRT 파일 찾기 (하위 폴더 포함)
+    srt_files = glob.glob("**/*.srt", recursive=True)
+    srt_files.extend(glob.glob("**/*.SRT", recursive=True))
 
     if not srt_files:
-        search_scope = "현재 폴더와 하위 폴더" if recursive else "현재 폴더"
-        print(f"{search_scope}에 SRT 파일을 찾을 수 없습니다.")
+        print("현재 폴더와 하위 폴더에 SRT 파일을 찾을 수 없습니다.")
         return
 
     print(f"총 {len(srt_files)}개의 파일을 처리합니다.\n")
@@ -271,38 +241,29 @@ def process_files(src_lang, dest_lang, replace_original, recursive=False):
 
         file_path = Path(srt_file)
 
-        if replace_original:
-            # 원본 파일 대체 모드: 백업 생성 후 원본에 덮어쓰기
-            backup_file = file_path.parent / f"{file_path.stem}_backup.srt"
-            output_file = file_path
-            temp_output = file_path.parent / f"{file_path.stem}_temp.srt"
+        # 원본 언어 보관 후 번역본이 원본 파일명을 대체
+        backup_file = file_path.parent / f"{file_path.stem}_{src_lang}.srt"
+        output_file = file_path
+        temp_output = file_path.parent / f"{file_path.stem}_temp.srt"
 
-            try:
-                # 임시 파일로 번역
-                translate_srt(srt_file, temp_output, src_lang, dest_lang)
+        try:
+            # 임시 파일로 번역
+            translate_srt(srt_file, temp_output, src_lang, dest_lang)
 
-                # 원본을 백업으로 이동
-                import shutil
-                shutil.copy2(srt_file, backup_file)
-                print(f"백업 생성: {backup_file}")
+            # 원본을 언어 코드가 붙은 파일명으로 보관
+            import shutil
+            shutil.copy2(srt_file, backup_file)
+            print(f"원본 보관: {backup_file}")
 
-                # 번역된 파일을 원본으로 이동
-                shutil.move(str(temp_output), str(output_file))
-                print(f"원본 파일 대체 완료: {output_file}\n")
+            # 번역된 파일을 원본 파일명으로 이동
+            shutil.move(str(temp_output), str(output_file))
+            print(f"원본 파일 대체 완료: {output_file}\n")
 
-            except Exception as e:
-                print(f"오류 발생 ({srt_file}): {e}\n")
-                # 임시 파일이 있으면 삭제
-                if temp_output.exists():
-                    temp_output.unlink()
-        else:
-            # 새 파일 생성 모드
-            output_file = file_path.parent / f"{file_path.stem}_translated.srt"
-
-            try:
-                translate_srt(srt_file, output_file, src_lang, dest_lang)
-            except Exception as e:
-                print(f"오류 발생 ({srt_file}): {e}\n")
+        except Exception as e:
+            print(f"오류 발생 ({srt_file}): {e}\n")
+            # 임시 파일이 있으면 삭제
+            if temp_output.exists():
+                temp_output.unlink()
 
     print("모든 작업이 완료되었습니다.")
 
@@ -316,7 +277,7 @@ def main():
     args = parse_arguments()
 
     # 명령줄 옵션이 제공되었는지 확인
-    has_cli_options = args.src or args.dest or args.output
+    has_cli_options = args.src or args.dest
 
     if has_cli_options:
         # 명령줄 모드: 모든 필수 옵션이 있는지 확인
@@ -329,7 +290,6 @@ def main():
 
         src_lang = args.src
         dest_lang = args.dest
-        replace_original = (args.output == 'replace') if args.output else False
 
         # 유효한 언어 코드 확인
         valid_langs = ['ko', 'en', 'ja']
@@ -346,15 +306,14 @@ def main():
         print("명령줄 모드로 실행")
         print(f"  원본 언어: {src_lang}")
         print(f"  대상 언어: {dest_lang}")
-        print(f"  저장 방식: {'원본 대체 (백업 생성)' if replace_original else '새 파일 생성'}")
+        print(f"  저장 방식: 원본 파일 대체 (원본은 원본파일명_{src_lang}.srt로 보관)")
         print("="*50 + "\n")
     else:
         # 대화형 모드
-        src_lang, dest_lang, replace_original = show_language_menu()
+        src_lang, dest_lang = show_language_menu()
 
-    # 파일 처리
-    recursive = args.recursive if has_cli_options else False
-    process_files(src_lang, dest_lang, replace_original, recursive)
+    # 파일 처리 (현재 폴더 및 하위 폴더 전체)
+    process_files(src_lang, dest_lang)
 
 
 if __name__ == "__main__":

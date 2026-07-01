@@ -337,7 +337,7 @@ def main():
     parser.add_argument(
         "-r", "--recursive",
         action="store_true",
-        help="하위 폴더 포함하여 재귀적으로 MP4 파일 처리"
+        help="하위 폴더 포함 재귀 처리 (이제 기본 동작이며, 호환성을 위해 유지됨)"
     )
 
     args = parser.parse_args()
@@ -365,12 +365,13 @@ def main():
         print("="*50 + "\n")
     else:
         # 대화형 모드
-        # MP4 파일이 있는지 먼저 확인
-        mp4_files = glob.glob("*.mp4")
-        mp4_files.extend(glob.glob("*.MP4"))
+        # 하위 폴더를 포함하여 MP4 파일이 있는지 먼저 확인
+        mp4_files = []
+        for pattern in ["**/*.mp4", "**/*.MP4"]:
+            mp4_files.extend(glob.glob(pattern, recursive=True))
 
         if not mp4_files:
-            print("현재 폴더에 MP4 파일을 찾을 수 없습니다.")
+            print("현재 폴더 및 하위 폴더에서 MP4 파일을 찾을 수 없습니다.")
             return
 
         # 대화형 메뉴 표시
@@ -380,15 +381,16 @@ def main():
     if args.files:
         mp4_files = args.files
     else:
-        if args.recursive:
-            # 재귀적으로 모든 MP4 파일 찾기
-            mp4_files = []
-            for pattern in ["**/*.mp4", "**/*.MP4"]:
-                mp4_files.extend(glob.glob(pattern, recursive=True))
-        else:
-            # 현재 폴더의 MP4 파일만
-            mp4_files = glob.glob("*.mp4")
-            mp4_files.extend(glob.glob("*.MP4"))
+        # 하위 폴더를 포함하여 모든 MP4 파일을 재귀적으로 찾음
+        # (macOS 등 대소문자 구분 없는 파일시스템에서의 중복 매칭 방지)
+        mp4_files = []
+        seen = set()
+        for pattern in ["**/*.mp4", "**/*.MP4"]:
+            for path in glob.glob(pattern, recursive=True):
+                key = os.path.normcase(os.path.abspath(path))
+                if key not in seen:
+                    seen.add(key)
+                    mp4_files.append(path)
 
     if not mp4_files:
         print("MP4 파일을 찾을 수 없습니다.")
