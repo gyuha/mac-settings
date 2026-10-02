@@ -38,8 +38,8 @@ declare -a Apps=(
 "visual-studio-code-insiders" # Open-source code editor indsiders
 "sublime-text" # Text Editor
 "zed" # Text Editor
-"flameshot" # Screenshot tool
-"shottr"
+# "flameshot" # Screenshot tool
+# "shottr"
 "keyboard-cowboy" # Keyboard Cowboy https://github.com/zenangst/KeyboardCowboy
 "mpv" # Media player based on MPlayer and mplayer2
 "affinity" # Graphic App
@@ -47,6 +47,7 @@ declare -a Apps=(
 "tabby" # Ssh & Terminal App
 "clipgrab" # Downloads videos and audio from websites
 "sourcegit" # Git GUI Client
+"macshot" # The most feature-rich open-source screenshot tool on macOS.
 )
 
 # 미사용
